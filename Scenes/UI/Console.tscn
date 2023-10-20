@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://dctaq2u0uqb6c"]
+
+[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="1_nhqcv"]
+[ext_resource type="Script" path="res://Scripts/UI/Console.cs" id="2_l4nvy"]
+[ext_resource type="FontFile" uid="uid://bowmnyoh1q8hw" path="res://Art/Fonts/RobotoMono/RobotoMono-Regular.ttf" id="3_wblew"]
+[ext_resource type="FontFile" uid="uid://bbtun5x0cmwkd" path="res://Art/Fonts/RobotoMono/RobotoMono-Bold.ttf" id="4_g85lo"]
+[ext_resource type="FontFile" uid="uid://ku3tj4n74yu2" path="res://Art/Fonts/RobotoMono/RobotoMono-Italic.ttf" id="5_dg1bm"]
+[ext_resource type="FontFile" uid="uid://o1j1jciel7u3" path="res://Art/Fonts/RobotoMono/RobotoMono-BoldItalic.ttf" id="6_gj6h2"]
+[ext_resource type="StyleBox" uid="uid://drpu65mj6utt" path="res://Scenes/UI/console_input_stylebox.tres" id="6_tmlae"]
+[ext_resource type="Script" path="res://Scripts/UI/ConsoleLineEdit.cs" id="7_gfwhk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je77p"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 30.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrxye"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.164706, 0.164706, 0.164706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gidcm"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="Console" type="Window" node_paths=PackedStringArray("output", "inputBox")]
+disable_3d = true
+title = "Console"
+initial_position = 2
+size = Vector2i(600, 400)
+transient = true
+always_on_top = true
+min_size = Vector2i(250, 250)
+max_size = Vector2i(1500, 1500)
+theme_override_colors/title_color = Color(1, 1, 1, 1)
+theme_override_constants/title_height = 30
+theme_override_fonts/title_font = ExtResource("1_nhqcv")
+theme_override_styles/embedded_border = SubResource("StyleBoxFlat_je77p")
+script = ExtResource("2_l4nvy")
+output = NodePath("BG/VBoxContainer/ConsoleOutput")
+inputBox = NodePath("BG/VBoxContainer/CommandInput")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="ConsoleOutput" type="RichTextLabel" parent="BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_wblew")
+theme_override_fonts/bold_font = ExtResource("4_g85lo")
+theme_override_fonts/italics_font = ExtResource("5_dg1bm")
+theme_override_fonts/bold_italics_font = ExtResource("6_gj6h2")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_jrxye")
+bbcode_enabled = true
+
+[node name="CommandInput" type="LineEdit" parent="BG/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_wblew")
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_gidcm")
+theme_override_styles/focus = ExtResource("6_tmlae")
+theme_override_styles/read_only = ExtResource("6_tmlae")
+placeholder_text = "Enter command..."
+script = ExtResource("7_gfwhk")

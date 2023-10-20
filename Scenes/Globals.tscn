@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs2bem6u2ui7b"]
+
+[ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_uhgae"]
+[ext_resource type="Script" path="res://Scripts/LoopingAudioStreamPlayer.cs" id="2_s1bug"]
+[ext_resource type="PackedScene" uid="uid://dctaq2u0uqb6c" path="res://Scenes/UI/Console.tscn" id="3_iyp0v"]
+[ext_resource type="PackedScene" uid="uid://ytnnw4ifwl3m" path="res://Scenes/UI/FPSCounter.tscn" id="4_rvtgw"]
+
+[node name="Globals" type="Node" node_paths=PackedStringArray("music", "fpsCounter")]
+script = ExtResource("1_uhgae")
+music = NodePath("Music")
+fpsCounter = NodePath("FPSCounter")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_s1bug")
+
+[node name="Console" parent="." instance=ExtResource("3_iyp0v")]
+
+[node name="FPSCounter" parent="." instance=ExtResource("4_rvtgw")]
+visible = false

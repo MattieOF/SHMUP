@@ -42,6 +42,12 @@ public class Commands
         });
         AddCommand("set_console_font_size", args =>
         {
+            if (args.Args.Length == 0)
+            {
+                args.CallingConsole.WriteError("Usage: set_console_font_size <font-size:int>");
+                return false;
+            }
+            
             int newSize = Convert.ToInt32(args.Args[0]);
             if (newSize < 6)
                 args.CallingConsole.WriteError("The console font size can't be less than 6.");

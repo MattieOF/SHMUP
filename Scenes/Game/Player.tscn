@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp2au8wylqawc"]
+[gd_scene load_steps=3 format=3 uid="uid://cp2au8wylqawc"]
 
-[ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/Temp/animations.tres" id="1_ax732"]
+[ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/BasicGuy/basic_guy_animations.tres" id="1_texx1"]
+[ext_resource type="Script" path="res://Scripts/Game/Player.cs" id="2_jm5mj"]
 
 [node name="Player" type="AnimatedSprite2D"]
 texture_filter = 1
-sprite_frames = ExtResource("1_ax732")
-animation = &"right"
+scale = Vector2(3.5, 3.5)
+sprite_frames = ExtResource("1_texx1")
+animation = &"up"
+script = ExtResource("2_jm5mj")

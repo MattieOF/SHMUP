@@ -9,11 +9,14 @@ public partial class Console : Window
 	[Export] public RichTextLabel output;
 	[Export] public ConsoleLineEdit inputBox;
 	
-	private bool _open = false;
+	private bool _open;
 	public bool Open => _open;
 	
 	public override void _Ready()
 	{
+		if (Commands.Instance is null)
+			Commands.Instance = new();
+		
 		if (Instance is not null)
 			Instance.QueueFree();
 		Instance = this;
@@ -76,10 +79,7 @@ public partial class Console : Window
 		
 		command = command.Trim();
 		string[] tokens = command.Split(" ");
-		if (Commands.Instance.GetCommand(tokens[0], out var commandFunc))
-			commandFunc(new(this, GetTree(), tokens.Skip(1).ToArray()));
-		else
-			WriteLine($"Unknown command: \"{command}\"", Colors.Red);
+		Commands.Instance.Call(tokens[0], tokens.Skip(1).ToArray(), this);
 
 		inputBox.Clear();
 	}

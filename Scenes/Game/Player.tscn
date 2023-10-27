@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp2au8wylqawc"]
+
+[ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/Temp/animations.tres" id="1_ax732"]
+
+[node name="Player" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = ExtResource("1_ax732")
+animation = &"right"

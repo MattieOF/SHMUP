@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp2au8wylqawc"]
+[gd_scene load_steps=4 format=3 uid="uid://cp2au8wylqawc"]
 
 [ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/BasicGuy/basic_guy_animations.tres" id="1_texx1"]
 [ext_resource type="Script" path="res://Scripts/Game/Player.cs" id="2_jm5mj"]
 
-[node name="Player" type="AnimatedSprite2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_er8kh"]
+radius = 39.0
+height = 92.0
+
+[node name="Player" type="CharacterBody2D"]
 texture_filter = 1
-scale = Vector2(3.5, 3.5)
+script = ExtResource("2_jm5mj")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
 sprite_frames = ExtResource("1_texx1")
 animation = &"up"
-script = ExtResource("2_jm5mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_er8kh")

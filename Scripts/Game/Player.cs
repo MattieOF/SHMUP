@@ -1,14 +1,20 @@
 using Godot;
 
-public partial class Player : AnimatedSprite2D
+public partial class Player : CharacterBody2D
 {
 	[Export] public CharacterData Data;
+
+	private AnimatedSprite2D _sprite;
+	private Vector2 _movement;
 	
 	public override void _Ready()
 	{
-		SpriteFrames = Data.Sprite;
-		Animation = "down";
-		Stop();
+		MotionMode = MotionModeEnum.Floating;
+		
+		_sprite = GetNode<AnimatedSprite2D>("Sprite");
+		_sprite.SpriteFrames = Data.Sprite;
+		_sprite.Animation = "down";
+		_sprite.Stop();
 	}
 
 	public override void _Process(double delta)
@@ -17,18 +23,24 @@ public partial class Player : AnimatedSprite2D
 		int horizontal = (Input.IsActionPressed("right") ? 1 : 0) - (Input.IsActionPressed("left") ? 1 : 0);
 		int vertical = (Input.IsActionPressed("down") ? 1 : 0) - (Input.IsActionPressed("up") ? 1 : 0);
 
-		Vector2 movement = new Vector2(horizontal, vertical);
-		movement = movement.Normalized();
-		movement *= Data.MoveSpeed * (float)delta;
-		
-		Translate(movement);
+		// Calculate movement
+		_movement = new Vector2(horizontal, vertical);
+		_movement = _movement.Normalized();
+		_movement *= Data.MoveSpeed * 50;
 		
 		// Select animation
-		if (movement.LengthSquared() == 0)
-			Stop();
-		else if (Mathf.Abs(movement.X) > Mathf.Abs(movement.Y))
-			Play(movement.X < 0 ? "left" : "right");
+		if (_movement.LengthSquared() == 0)
+			_sprite.Stop();
+		else if (Mathf.Abs(_movement.X) > Mathf.Abs(_movement.Y))
+			_sprite.Play(_movement.X < 0 ? "left" : "right");
 		else
-			Play(movement.Y < 0 ? "up" : "down");
+			_sprite.Play(_movement.Y < 0 ? "up" : "down");
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		base._PhysicsProcess(delta);
+		Velocity = _movement * (float)delta;
+		MoveAndSlide();
 	}
 }

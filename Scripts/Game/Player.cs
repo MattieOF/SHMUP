@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
 
 	private AnimatedSprite2D _sprite;
 	private Vector2 _movement;
+	private bool _movingLastFrame = false;
 	
 	public override void _Ready()
 	{
@@ -30,11 +31,21 @@ public partial class Player : CharacterBody2D
 		
 		// Select animation
 		if (_movement.LengthSquared() == 0)
-			_sprite.Stop();
+		{
+			if (_movingLastFrame)
+				_sprite.Play(_sprite.Animation.ToString()!.Replace("move_", ""));
+			_movingLastFrame = false;
+		}
 		else if (Mathf.Abs(_movement.X) > Mathf.Abs(_movement.Y))
-			_sprite.Play(_movement.X < 0 ? "left" : "right");
+		{
+			_sprite.Play(_movement.X < 0 ? "move_left" : "move_right");
+			_movingLastFrame = true;
+		}
 		else
-			_sprite.Play(_movement.Y < 0 ? "up" : "down");
+		{
+			_sprite.Play(_movement.Y < 0 ? "move_up" : "move_down");
+			_movingLastFrame = true;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)

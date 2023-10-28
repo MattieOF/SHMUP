@@ -2,10 +2,20 @@ using Godot;
 
 public partial class Globals : Node
 {
+	public static Globals Instance;
+	
 	[Export] public LoopingAudioStreamPlayer music;
 	[Export] public FPSCounter fpsCounter;
 	
 	private Tween _musicTween;
+
+	public float LookAheadDistance = 70;
+	public float LookAheadSpeed    = 150;
+
+	public override void _Ready()
+	{
+		Instance = this;
+	}
 
 	public void StopMusic()
 	{

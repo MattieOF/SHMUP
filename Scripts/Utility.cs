@@ -21,4 +21,18 @@ public static class Utility
     }
 
     public static bool CoinFlip(float chance = 0.5f) => RNG.Randf() <= chance;
+
+    public static Vector2 MoveToward(Vector2 start, Vector2 target, float delta)
+    {
+        start.X = Mathf.MoveToward(start.X, target.X, delta);
+        start.Y = Mathf.MoveToward(start.Y, target.Y, delta);
+        return start;
+    }
+    
+    public static Vector2 MoveToward(Vector2 start, Vector2 target, Vector2 delta)
+    {
+        start.X = Mathf.MoveToward(start.X, target.X, delta.X);
+        start.Y = Mathf.MoveToward(start.Y, target.Y, delta.Y);
+        return start;
+    }
 }

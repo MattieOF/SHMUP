@@ -9,6 +9,7 @@ height = 92.0
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
+motion_mode = 1
 script = ExtResource("2_jm5mj")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -16,5 +17,14 @@ scale = Vector2(5, 5)
 sprite_frames = ExtResource("1_texx1")
 animation = &"up"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_er8kh")
+
+[node name="Camera" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_drag_margin = true

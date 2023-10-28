@@ -5,17 +5,18 @@ public partial class Player : CharacterBody2D
 	[Export] public CharacterData Data;
 
 	private AnimatedSprite2D _sprite;
-	private Vector2 _movement;
-	private bool _movingLastFrame = false;
+	private Camera2D _camera;
+	private Vector2 _movement, _targetCamOffset;
+	private bool _movingLastFrame;
 	
 	public override void _Ready()
 	{
-		MotionMode = MotionModeEnum.Floating;
-		
 		_sprite = GetNode<AnimatedSprite2D>("Sprite");
 		_sprite.SpriteFrames = Data.Sprite;
 		_sprite.Animation = "down";
 		_sprite.Stop();
+
+		_camera = GetNode<Camera2D>("Camera");
 	}
 
 	public override void _Process(double delta)
@@ -27,10 +28,15 @@ public partial class Player : CharacterBody2D
 		// Calculate movement
 		_movement = new Vector2(horizontal, vertical);
 		_movement = _movement.Normalized();
-		_movement *= Data.MoveSpeed * 50;
+		var movementLength = _movement.LengthSquared();
+		
+		// Update camera look-ahead
+		if (movementLength != 0)
+			_targetCamOffset = _movement * Globals.Instance.LookAheadDistance;
+		_camera.Offset = Utility.MoveToward(_camera.Offset, _targetCamOffset, Globals.Instance.LookAheadSpeed * (float)delta);
 		
 		// Select animation
-		if (_movement.LengthSquared() == 0)
+		if (movementLength == 0)
 		{
 			if (_movingLastFrame)
 				_sprite.Play(_sprite.Animation.ToString()!.Replace("move_", ""));
@@ -51,7 +57,7 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		Velocity = _movement * (float)delta;
+		Velocity = _movement * Data.MoveSpeed * 50 * (float)delta;
 		MoveAndSlide();
 	}
 }

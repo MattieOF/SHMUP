@@ -6,10 +6,6 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_sdum8")]
-position = Vector2(562, 318)
-Data = ExtResource("2_06ucg")
-
 [node name="CollisionTest" parent="." instance=ExtResource("3_dcp5q")]
 position = Vector2(116, 127)
 
@@ -48,3 +44,7 @@ position = Vector2(967, 59)
 
 [node name="CollisionTest13" parent="." instance=ExtResource("3_dcp5q")]
 position = Vector2(987, 204)
+
+[node name="Player" parent="." instance=ExtResource("1_sdum8")]
+position = Vector2(576, 322)
+Data = ExtResource("2_06ucg")

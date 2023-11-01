@@ -8,3 +8,4 @@ script = ExtResource("1_b25ld")
 Name = "Basic Guy"
 Sprite = ExtResource("1_iqacm")
 MoveSpeed = 300.0
+BaseHealth = 100.0

@@ -5,7 +5,7 @@ public partial class Player : CharacterBody2D
 	[Export] public CharacterData Data;
 
 	private AnimatedSprite2D _sprite;
-	private Camera2D _camera;
+	private PlayerCamera _camera;
 	private Vector2 _movement, _targetCamOffset;
 	private bool _movingLastFrame;
 	
@@ -16,7 +16,7 @@ public partial class Player : CharacterBody2D
 		_sprite.Animation = "down";
 		_sprite.Stop();
 
-		_camera = GetNode<Camera2D>("Camera");
+		_camera = GetNode<PlayerCamera>("Camera");
 	}
 
 	public override void _Process(double delta)
@@ -33,7 +33,7 @@ public partial class Player : CharacterBody2D
 		// Update camera look-ahead
 		if (movementLength != 0)
 			_targetCamOffset = _movement * Globals.Instance.LookAheadDistance;
-		_camera.Offset = Utility.MoveToward(_camera.Offset, _targetCamOffset, Globals.Instance.LookAheadSpeed * (float)delta);
+		_camera.OffsetFromTarget = Utility.MoveToward(_camera.OffsetFromTarget, _targetCamOffset, Globals.Instance.LookAheadSpeed * (float)delta);
 		
 		// Select animation
 		if (movementLength == 0)

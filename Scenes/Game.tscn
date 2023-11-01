@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyaswgd4sfvkp"]
+[gd_scene load_steps=5 format=3 uid="uid://dyaswgd4sfvkp"]
 
 [ext_resource type="PackedScene" uid="uid://cp2au8wylqawc" path="res://Scenes/Game/Player.tscn" id="1_sdum8"]
 [ext_resource type="Resource" uid="uid://dw3pbbg7lh3a8" path="res://Data/Characters/BasicCharacter.tres" id="2_06ucg"]
 [ext_resource type="PackedScene" uid="uid://ub61uhg0cxsd" path="res://Scenes/Game/CollisionTest.tscn" id="3_dcp5q"]
+[ext_resource type="PackedScene" uid="uid://vols8fvs4gwl" path="res://Scenes/UI/HUD/HUD.tscn" id="4_4dtk2"]
 
 [node name="Game" type="Node2D"]
 
@@ -48,3 +49,5 @@ position = Vector2(987, 204)
 [node name="Player" parent="." instance=ExtResource("1_sdum8")]
 position = Vector2(576, 322)
 Data = ExtResource("2_06ucg")
+
+[node name="HUD" parent="." instance=ExtResource("4_4dtk2")]

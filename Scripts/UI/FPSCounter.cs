@@ -17,10 +17,9 @@ public partial class FPSCounter : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		return; // For now ignore input
-		if (!@event.IsActionPressed("showfps")) return;
-		
-		bg.Visible = !bg.Visible;
-		GetViewport().SetInputAsHandled();
+		// if (!@event.IsActionPressed("showfps")) return;
+		//
+		// bg.Visible = !bg.Visible;
+		// GetViewport().SetInputAsHandled();
 	}
 }

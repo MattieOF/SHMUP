@@ -129,3 +129,6 @@ func _unhandled_key_input(event : InputEvent) -> void:
 		make_bottom_panel_item_visible(FileDock)
 		Hidden = false
 
+func _set_window_layout(configuration):
+	FilesToBottom()
+	make_bottom_panel_item_visible(FileDock)

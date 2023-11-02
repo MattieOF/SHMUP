@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public partial class Player : CharacterBody2D
 {
@@ -6,6 +7,8 @@ public partial class Player : CharacterBody2D
 	[Export] public Area2D PickupArea;
 	[Export] public HUD HUD;
 	[Export] public ItemData[] Gems;
+
+	public Inventory Inventory = new();
 	
 	public int XP { get; private set; }
 
@@ -76,4 +79,32 @@ public partial class Player : CharacterBody2D
 		XP += xp;
 		HUD.SetLevel(Data.XPToLevelData.GetLevel(XP));
 	}
+}
+
+public class Inventory
+{
+	private Dictionary<ItemData, int> _inv;
+
+	public void Add(ItemData itemType, int amount)
+	{
+		if (_inv.ContainsKey(itemType))
+			_inv[itemType] += amount;
+		else
+			_inv.Add(itemType, amount);
+	}
+
+	public void Remove(ItemData itemType, int amount)
+	{
+		if (!_inv.ContainsKey(itemType))
+			return;
+
+		_inv[itemType] = _inv[itemType] - amount;
+
+		if (_inv[itemType] <= 0)
+			_inv.Remove(itemType);
+	}
+
+	public int Get(ItemData itemType) => _inv.ContainsKey(itemType) ? _inv[itemType] : 0;
+
+	public bool HasAny(ItemData itemType) => _inv.ContainsKey(itemType);
 }

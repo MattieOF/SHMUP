@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://bth0jewv3wxww"]
+
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="1_djnnw"]
+[ext_resource type="Texture2D" uid="uid://b6phwvybjkvjp" path="res://Art/Resources/Wood.png" id="1_qb47l"]
+[ext_resource type="Script" path="res://Scripts/Game/Data/ItemData.cs" id="2_2sbsn"]
+[ext_resource type="Script" path="res://Scripts/Game/ResourcePickup.cs" id="2_jd2ua"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eymut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qb47l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_2sbsn")
+Name = "Wood"
+Icon = ExtResource("1_qb47l")
+Sprite = SubResource("SpriteFrames_eymut")
+PickupClassOverride = ExtResource("2_jd2ua")
+PickupScene = ExtResource("1_djnnw")

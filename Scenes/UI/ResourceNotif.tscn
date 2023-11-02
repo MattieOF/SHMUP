@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw3hhgj1ic5i1"]
+
+[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="1_4shbp"]
+[ext_resource type="Script" path="res://Scripts/UI/ResourceNotif.cs" id="1_xa7lk"]
+[ext_resource type="Texture2D" uid="uid://b6phwvybjkvjp" path="res://Art/Resources/Wood.png" id="2_12njk"]
+[ext_resource type="FontFile" uid="uid://bokg44dqiybb" path="res://Art/Fonts/Roboto/Roboto-Light.ttf" id="3_lln55"]
+
+[node name="ResourceNotif" type="HBoxContainer" node_paths=PackedStringArray("Icon", "Amount", "ItemName")]
+script = ExtResource("1_xa7lk")
+Icon = NodePath("ItemIcon")
+Amount = NodePath("Amount")
+ItemName = NodePath("ItemName")
+
+[node name="ItemIcon" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("2_12njk")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4shbp")
+text = "+50"
+vertical_alignment = 2
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lln55")
+text = "Wood
+"
+vertical_alignment = 2

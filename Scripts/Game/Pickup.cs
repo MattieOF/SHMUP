@@ -12,8 +12,8 @@ public partial class Pickup : Area2D
 
 	private ItemData _item;
 	private AnimatedSprite2D _sprite;
-	private Vector2 _startingPos;
 
+	protected Vector2 StartingPos;
 	protected Player Player;
 
 	public override void _Ready()
@@ -34,12 +34,12 @@ public partial class Pickup : Area2D
         PickedUp = true;
         Player = player;
 
-        _startingPos = GlobalPosition;
+        StartingPos = GlobalPosition;
         Tween pickupTween = CreateTween();
         var setPos = new Action<float>(value =>
         {
-	        var diff = _startingPos - player.GlobalPosition;
-	        GlobalPosition = _startingPos + (diff * value);
+	        var diff = StartingPos - player.GlobalPosition;
+	        GlobalPosition = StartingPos + (diff * value);
         });
         pickupTween.TweenMethod(Callable.From(setPos), Variant.From(0.0f), Variant.From(0.35f), 0.15f).SetEase(Tween.EaseType.Out);
         pickupTween.TweenMethod(Callable.From(setPos), Variant.From(0.35f), Variant.From(-1), 0.3f).SetEase(Tween.EaseType.In);

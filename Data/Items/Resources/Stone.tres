@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://ct60xy5l42v7t"]
+
+[ext_resource type="Texture2D" uid="uid://dy0oweryh5fwe" path="res://Art/Resources/Stone.png" id="1_f2e4v"]
+[ext_resource type="Script" path="res://Scripts/Game/ResourcePickup.cs" id="2_4jrc6"]
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="3_bfxju"]
+[ext_resource type="Script" path="res://Scripts/Game/Data/ItemData.cs" id="4_w0dax"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34i16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f2e4v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_w0dax")
+Name = "Stone"
+Icon = ExtResource("1_f2e4v")
+Sprite = SubResource("SpriteFrames_34i16")
+PickupClassOverride = ExtResource("2_4jrc6")
+PickupScene = ExtResource("3_bfxju")

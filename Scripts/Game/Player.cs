@@ -7,6 +7,7 @@ public partial class Player : CharacterBody2D
 	[Export] public Area2D PickupArea;
 	[Export] public HUD HUD;
 	[Export] public ItemData[] Gems;
+	[Export] public ItemData[] Resources;
 
 	public Inventory Inventory = new();
 	
@@ -65,6 +66,8 @@ public partial class Player : CharacterBody2D
 
 		if (Input.IsActionJustPressed("gem_test"))
 			(GetNode("/root/Game") as Node2D).SpawnItem(Gems[Utility.RNG.RandiRange(0, Gems.Length - 1)], _camera.GetGlobalMousePosition());
+		if (Input.IsActionPressed("res_test"))
+			(GetNode("/root/Game") as Node2D).SpawnItem(Resources[Utility.RNG.RandiRange(0, Resources.Length - 1)], _camera.GetGlobalMousePosition());
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -83,7 +86,7 @@ public partial class Player : CharacterBody2D
 
 public class Inventory
 {
-	private Dictionary<ItemData, int> _inv;
+	private Dictionary<ItemData, int> _inv = new();
 
 	public void Add(ItemData itemType, int amount)
 	{

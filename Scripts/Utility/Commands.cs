@@ -307,6 +307,13 @@ public class Commands
         args.CallingConsole?.WriteLine($"Took {sw.ElapsedMilliseconds}ms to reload commands.");
         return true;
     }
+
+    [Command("node_count")]
+    public static bool NodeCount(CommandArguments args)
+    {
+        args.CallingConsole.WriteLine($"Node count: {args.Tree.GetNodeCount()}");
+        return true;
+    }
     
     public bool IsCommandNameValid(string name) => !name.Contains(' ');
     

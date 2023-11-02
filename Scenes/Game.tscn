@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyaswgd4sfvkp"]
+[gd_scene load_steps=5 format=3 uid="uid://dyaswgd4sfvkp"]
 
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_bxp17"]
 [ext_resource type="PackedScene" uid="uid://cp2au8wylqawc" path="res://Scenes/Game/Player.tscn" id="1_sdum8"]
 [ext_resource type="Resource" uid="uid://dw3pbbg7lh3a8" path="res://Data/Characters/BasicCharacter.tres" id="2_06ucg"]
 [ext_resource type="PackedScene" uid="uid://vols8fvs4gwl" path="res://Scenes/UI/HUD/HUD.tscn" id="4_4dtk2"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_bxp17")
 
 [node name="Player" parent="." node_paths=PackedStringArray("HUD") instance=ExtResource("1_sdum8")]
 position = Vector2(576, 322)

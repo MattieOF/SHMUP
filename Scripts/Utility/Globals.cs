@@ -6,6 +6,9 @@ public partial class Globals : Node
 	
 	[Export] public LoopingAudioStreamPlayer music;
 	[Export] public FPSCounter fpsCounter;
+
+	[ExportCategory("Global Asset Instances")]
+	[Export] public PackedScene ResourceNotif;
 	
 	private Tween _musicTween;
 

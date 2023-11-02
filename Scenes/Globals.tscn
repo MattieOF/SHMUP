@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs2bem6u2ui7b"]
+[gd_scene load_steps=6 format=3 uid="uid://bs2bem6u2ui7b"]
 
 [ext_resource type="Script" path="res://Scripts/Utility/Globals.cs" id="1_uhgae"]
+[ext_resource type="PackedScene" uid="uid://cw3hhgj1ic5i1" path="res://Scenes/UI/ResourceNotif.tscn" id="2_1c1i1"]
 [ext_resource type="Script" path="res://Scripts/Utility/LoopingAudioStreamPlayer.cs" id="2_s1bug"]
 [ext_resource type="PackedScene" uid="uid://dctaq2u0uqb6c" path="res://Scenes/UI/Console.tscn" id="3_iyp0v"]
 [ext_resource type="PackedScene" uid="uid://ytnnw4ifwl3m" path="res://Scenes/UI/FPSCounter.tscn" id="4_rvtgw"]
@@ -10,6 +11,7 @@ process_mode = 3
 script = ExtResource("1_uhgae")
 music = NodePath("Music")
 fpsCounter = NodePath("CanvasLayer/FPSCounter")
+ResourceNotif = ExtResource("2_1c1i1")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 script = ExtResource("2_s1bug")

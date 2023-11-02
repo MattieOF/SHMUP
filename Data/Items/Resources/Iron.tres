@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://imto3pqmd2jd"]
+
+[ext_resource type="Texture2D" uid="uid://dpinn8fd4g14a" path="res://Art/Resources/Iron.png" id="1_d4kom"]
+[ext_resource type="Script" path="res://Scripts/Game/ResourcePickup.cs" id="2_8j3ra"]
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="3_rha0m"]
+[ext_resource type="Script" path="res://Scripts/Game/Data/ItemData.cs" id="4_8c8ex"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eu2hr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d4kom")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_8c8ex")
+Name = "Iron"
+Icon = ExtResource("1_d4kom")
+Sprite = SubResource("SpriteFrames_eu2hr")
+PickupClassOverride = ExtResource("2_8j3ra")
+PickupScene = ExtResource("3_rha0m")

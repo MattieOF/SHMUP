@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp2au8wylqawc"]
+[gd_scene load_steps=13 format=3 uid="uid://cp2au8wylqawc"]
 
 [ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/BasicGuy/basic_guy_animations.tres" id="1_texx1"]
 [ext_resource type="Resource" uid="uid://dt7u5i6h3od2q" path="res://Data/Items/Gems/Diamond.tres" id="2_3lrkn"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Scripts/Game/PlayerCamera.cs" id="3_s3w0w"]
 [ext_resource type="Resource" uid="uid://c8d3akvomnrax" path="res://Data/Items/Gems/Ruby.tres" id="4_05yy7"]
 [ext_resource type="Resource" uid="uid://ph6d22lq6xtj" path="res://Data/Items/Gems/Sapphire.tres" id="5_yu23r"]
+[ext_resource type="Resource" uid="uid://bth0jewv3wxww" path="res://Data/Items/Resources/Wood.tres" id="6_ek2t4"]
+[ext_resource type="Resource" uid="uid://ct60xy5l42v7t" path="res://Data/Items/Resources/Stone.tres" id="7_halw4"]
+[ext_resource type="Resource" uid="uid://imto3pqmd2jd" path="res://Data/Items/Resources/Iron.tres" id="8_msx2r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_er8kh"]
 radius = 39.0
@@ -23,6 +26,7 @@ motion_mode = 1
 script = ExtResource("2_jm5mj")
 PickupArea = NodePath("PickupRange")
 Gems = Array[Object]([ExtResource("2_3lrkn"), ExtResource("3_fr4dx"), ExtResource("4_05yy7"), ExtResource("5_yu23r")])
+Resources = Array[Object]([ExtResource("6_ek2t4"), ExtResource("7_halw4"), ExtResource("8_msx2r")])
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)

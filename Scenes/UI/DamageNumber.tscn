@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpf5dffi48cwl"]
+
+[ext_resource type="Script" path="res://Scripts/UI/DamageNumber.cs" id="1_8gwr4"]
+[ext_resource type="FontFile" uid="uid://e27tnhgvq05l" path="res://Art/Fonts/Roboto/Roboto-BoldItalic.ttf" id="1_11do0"]
+
+[node name="DamageNumber" type="Label"]
+theme_override_fonts/font = ExtResource("1_11do0")
+text = "50"
+script = ExtResource("1_8gwr4")

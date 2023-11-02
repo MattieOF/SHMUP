@@ -110,4 +110,30 @@ public class Inventory
 	public int Get(ItemData itemType) => _inv.ContainsKey(itemType) ? _inv[itemType] : 0;
 
 	public bool HasAny(ItemData itemType) => _inv.ContainsKey(itemType);
+
+	[Command("print_inv")]
+	public static bool PrintInventory(CommandArguments args)
+	{
+		var player = args.Tree.GetFirstNodeInGroup("Player") as Player;
+
+		if (player is null)
+		{
+			args.CallingConsole.WriteError($"No player currently exists!");
+			return false;
+		}
+
+		if (player.Inventory._inv.Count == 0)
+		{
+			args.CallingConsole.WriteLine($"The players inventory is empty.");
+			return true;
+		}
+        
+        args.CallingConsole.WriteLine("Inventory:");	
+		foreach (var item in player.Inventory._inv)
+		{
+			args.CallingConsole.WriteLine($"	{item.Key.Name}: {item.Value}");	
+		}
+		
+        return true;
+	}
 }

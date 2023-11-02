@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://dw3pbbg7lh3a8"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=4 format=3 uid="uid://dw3pbbg7lh3a8"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Data/CharacterData.cs" id="1_b25ld"]
 [ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/BasicGuy/basic_guy_animations.tres" id="1_iqacm"]
+[ext_resource type="Resource" uid="uid://2rx2nmcxw448" path="res://Data/Characters/BasicLevels.tres" id="2_qgrka"]
 
 [resource]
 script = ExtResource("1_b25ld")
@@ -9,3 +10,4 @@ Name = "Basic Guy"
 Sprite = ExtResource("1_iqacm")
 MoveSpeed = 300.0
 BaseHealth = 100.0
+XPToLevelData = ExtResource("2_qgrka")

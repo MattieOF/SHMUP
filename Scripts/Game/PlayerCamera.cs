@@ -25,22 +25,19 @@ public partial class PlayerCamera : Camera2D
         _noise.FractalOctaves = 2;
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        // if (Input.IsActionJustPressed("up"))
-        //     AddTrauma(1);
-        
+        Vector2 shakeOffset = new();
         if (_trauma > 0)
         {
             _noiseY++;
             _trauma = Mathf.Max(_trauma - ShakeDecay * (float)delta, 0);
             var shakeAmount = Mathf.Pow(_trauma, _traumaExponent);
             Rotation = MaxShakeRotation * shakeAmount * _noise.GetNoise2D(_noise.Seed, _noiseY);
-            Vector2 offset;
-            offset.X = OffsetFromTarget.X + (MaxShakeOffset.X * shakeAmount * _noise.GetNoise2D(_noise.Seed * 2, _noiseY));
-            offset.Y = OffsetFromTarget.Y + (MaxShakeOffset.Y * shakeAmount * _noise.GetNoise2D(_noise.Seed * 3, _noiseY));
-            Offset = offset;
+            shakeOffset.X = MaxShakeOffset.X * shakeAmount * _noise.GetNoise2D(_noise.Seed * 2, _noiseY);
+            shakeOffset.Y = MaxShakeOffset.Y * shakeAmount * _noise.GetNoise2D(_noise.Seed * 3, _noiseY);
         }
+        Offset = OffsetFromTarget + shakeOffset;
     }
 
     public void AddTrauma(float value)

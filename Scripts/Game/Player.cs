@@ -3,6 +3,11 @@ using Godot;
 public partial class Player : CharacterBody2D
 {
 	[Export] public CharacterData Data;
+	[Export] public Area2D PickupArea;
+	[Export] public HUD HUD;
+	[Export] public ItemData[] Gems;
+	
+	public int XP { get; private set; }
 
 	private AnimatedSprite2D _sprite;
 	private PlayerCamera _camera;
@@ -17,6 +22,8 @@ public partial class Player : CharacterBody2D
 		_sprite.Stop();
 
 		_camera = GetNode<PlayerCamera>("Camera");
+
+		PickupArea.AreaEntered += area => (area as Pickup)?.PickUp(this);
 	}
 
 	public override void _Process(double delta)
@@ -52,6 +59,9 @@ public partial class Player : CharacterBody2D
 			_sprite.Play(_movement.Y < 0 ? "move_up" : "move_down");
 			_movingLastFrame = true;
 		}
+
+		if (Input.IsActionJustPressed("gem_test"))
+			(GetNode("/root/Game") as Node2D).SpawnItem(Gems[Utility.RNG.RandiRange(0, Gems.Length - 1)], _camera.GetGlobalMousePosition());
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -59,5 +69,11 @@ public partial class Player : CharacterBody2D
 		base._PhysicsProcess(delta);
 		Velocity = _movement * Data.MoveSpeed * 50 * (float)delta;
 		MoveAndSlide();
+	}
+
+	public void AddXP(int xp)
+	{
+		XP += xp;
+		HUD.SetLevel(Data.XPToLevelData.GetLevel(XP));
 	}
 }

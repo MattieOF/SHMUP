@@ -7,7 +7,14 @@ public partial class HUD : CanvasLayer
 	[Export] public ProgressBar LevelBar;
 	[Export] public Label CurrentLevel, NextLevel;
 
-	public void SetLevel(int level)
+	public void SetLevel(float level)
+	{
+		var floored = Mathf.FloorToInt(level);
+		SetLevelNumber(floored);
+		SetLevelProgress(level - floored);
+	}
+	
+	public void SetLevelNumber(int level)
 	{
 		CurrentLevel.Text = $"LVL {level}";
 		NextLevel.Text = $"{level + 1}";

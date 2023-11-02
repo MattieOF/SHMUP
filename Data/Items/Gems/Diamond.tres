@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GemItemData" load_steps=6 format=3 uid="uid://dt7u5i6h3od2q"]
+
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="1_gpvdo"]
+[ext_resource type="Script" path="res://Scripts/Game/GemPickup.cs" id="1_p4hdl"]
+[ext_resource type="Texture2D" uid="uid://ba5vs5v2b76n3" path="res://Art/Gems/Diamond.png" id="2_b3ubt"]
+[ext_resource type="Script" path="res://Scripts/Game/GemItemData.cs" id="2_c5o7x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f46o1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b3ubt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_c5o7x")
+XPValue = 20
+Name = "Diamond"
+Sprite = SubResource("SpriteFrames_f46o1")
+PickupClassOverride = ExtResource("1_p4hdl")
+PickupScene = ExtResource("1_gpvdo")

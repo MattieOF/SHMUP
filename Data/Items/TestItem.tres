@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cfddrfjrmpo31"]
+
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="1_j8o50"]
+[ext_resource type="Script" path="res://Scripts/Game/Data/ItemData.cs" id="2_b7lgx"]
+
+[resource]
+script = ExtResource("2_b7lgx")
+Name = "Test Item"
+PickupScene = ExtResource("1_j8o50")

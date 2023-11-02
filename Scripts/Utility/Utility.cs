@@ -35,4 +35,23 @@ public static class Utility
         start.Y = Mathf.MoveToward(start.Y, target.Y, delta.Y);
         return start;
     }
+
+    public static Pickup SpawnItem(this Node2D root, ItemData item, Vector2 location)
+    {
+        var pickup = item.PickupScene.Instantiate();
+
+        if (item.PickupClassOverride is not null)
+        {
+            var id = pickup.GetInstanceId();
+            pickup.SetScript(item.PickupClassOverride);
+            pickup = GodotObject.InstanceFromId(id) as Node;
+        }
+
+        var asPickup = pickup as Pickup;
+        
+        root.AddChild(pickup);
+        asPickup!.SetItem(item);
+        asPickup.GlobalPosition = location;
+        return asPickup;
+    }
 }

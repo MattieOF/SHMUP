@@ -1,17 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp2au8wylqawc"]
+[gd_scene load_steps=10 format=3 uid="uid://cp2au8wylqawc"]
 
 [ext_resource type="SpriteFrames" uid="uid://cc20qvyk5l6g7" path="res://Art/Character/BasicGuy/basic_guy_animations.tres" id="1_texx1"]
+[ext_resource type="Resource" uid="uid://dt7u5i6h3od2q" path="res://Data/Items/Gems/Diamond.tres" id="2_3lrkn"]
 [ext_resource type="Script" path="res://Scripts/Game/Player.cs" id="2_jm5mj"]
+[ext_resource type="Resource" uid="uid://dttowi354kawj" path="res://Data/Items/Gems/Emerald.tres" id="3_fr4dx"]
 [ext_resource type="Script" path="res://Scripts/Game/PlayerCamera.cs" id="3_s3w0w"]
+[ext_resource type="Resource" uid="uid://c8d3akvomnrax" path="res://Data/Items/Gems/Ruby.tres" id="4_05yy7"]
+[ext_resource type="Resource" uid="uid://ph6d22lq6xtj" path="res://Data/Items/Gems/Sapphire.tres" id="5_yu23r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_er8kh"]
 radius = 39.0
 height = 92.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qkovs"]
+radius = 100.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("PickupArea")]
 texture_filter = 1
+collision_layer = 2
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("2_jm5mj")
+PickupArea = NodePath("PickupRange")
+Gems = Array[Object]([ExtResource("2_3lrkn"), ExtResource("3_fr4dx"), ExtResource("4_05yy7"), ExtResource("5_yu23r")])
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
@@ -30,3 +41,10 @@ drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 editor_draw_drag_margin = true
 script = ExtResource("3_s3w0w")
+
+[node name="PickupRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="PickupShape" type="CollisionShape2D" parent="PickupRange"]
+shape = SubResource("CircleShape2D_qkovs")

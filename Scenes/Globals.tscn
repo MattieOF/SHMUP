@@ -1,19 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://bs2bem6u2ui7b"]
 
-[ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_uhgae"]
-[ext_resource type="Script" path="res://Scripts/LoopingAudioStreamPlayer.cs" id="2_s1bug"]
+[ext_resource type="Script" path="res://Scripts/Utility/Globals.cs" id="1_uhgae"]
+[ext_resource type="Script" path="res://Scripts/Utility/LoopingAudioStreamPlayer.cs" id="2_s1bug"]
 [ext_resource type="PackedScene" uid="uid://dctaq2u0uqb6c" path="res://Scenes/UI/Console.tscn" id="3_iyp0v"]
 [ext_resource type="PackedScene" uid="uid://ytnnw4ifwl3m" path="res://Scenes/UI/FPSCounter.tscn" id="4_rvtgw"]
 
 [node name="Globals" type="Node" node_paths=PackedStringArray("music", "fpsCounter")]
+process_mode = 3
 script = ExtResource("1_uhgae")
 music = NodePath("Music")
-fpsCounter = NodePath("FPSCounter")
+fpsCounter = NodePath("CanvasLayer/FPSCounter")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 script = ExtResource("2_s1bug")
 
 [node name="Console" parent="." instance=ExtResource("3_iyp0v")]
 
-[node name="FPSCounter" parent="." instance=ExtResource("4_rvtgw")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPSCounter" parent="CanvasLayer" instance=ExtResource("4_rvtgw")]
 visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = 0.0
+grow_vertical = 0

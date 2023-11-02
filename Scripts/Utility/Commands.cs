@@ -182,9 +182,19 @@ public class Commands
     }
 
     [Command("toggle_console")]
-    private static bool ToggleConsole(CommandArguments args)
+    public static bool ToggleConsole(CommandArguments args)
     {
         args.CallingConsole?.ToggleConsole();
+        return true;
+    }
+
+    [Command("set_vsync_mode")]
+    public static bool VsyncMode(CommandArguments args, int mode)
+    {
+        if (mode < 0 || mode > 3)
+            args.CallingConsole.WriteError("Mode should be between 0 and 3, inclusive.");
+        else
+            DisplayServer.WindowSetVsyncMode((DisplayServer.VSyncMode)mode);
         return true;
     }
 

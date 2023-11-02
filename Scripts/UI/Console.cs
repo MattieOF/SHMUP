@@ -63,6 +63,12 @@ public partial class Console : Window
 		GD.PrintErr(msg);
 	}
 	
+	public void WriteWarn(string msg)
+	{
+		WriteLine(msg, Colors.Yellow);
+		GD.PrintRich($"[color=#FFFF00]{msg}[/color]");
+	}
+	
 	public void WriteLine(string line, Color color)
 	{
 		if (output.GetVScrollBar().MaxValue - output.GetVScrollBar().Value - 1 <= output.GetVScrollBar().Page)

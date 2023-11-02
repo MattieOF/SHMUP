@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GemItemData" load_steps=6 format=3 uid="uid://dttowi354kawj"]
+
+[ext_resource type="Script" path="res://Scripts/Game/GemPickup.cs" id="1_ctwk3"]
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="2_jng60"]
+[ext_resource type="Texture2D" uid="uid://cpt133m3wh6nq" path="res://Art/Gems/Emerald.png" id="3_21y2t"]
+[ext_resource type="Script" path="res://Scripts/Game/GemItemData.cs" id="4_ewgqa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45pl4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_21y2t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_ewgqa")
+XPValue = 10
+Name = "Emerald"
+Sprite = SubResource("SpriteFrames_45pl4")
+PickupClassOverride = ExtResource("1_ctwk3")
+PickupScene = ExtResource("2_jng60")

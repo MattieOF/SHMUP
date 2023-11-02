@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GemItemData" load_steps=6 format=3 uid="uid://ph6d22lq6xtj"]
+
+[ext_resource type="Script" path="res://Scripts/Game/GemPickup.cs" id="1_w21ok"]
+[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="2_sulr5"]
+[ext_resource type="Texture2D" uid="uid://cuqgt4hxixep7" path="res://Art/Gems/Sapphire.png" id="3_p7ocg"]
+[ext_resource type="Script" path="res://Scripts/Game/GemItemData.cs" id="4_xon7b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8aq2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p7ocg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("4_xon7b")
+XPValue = 1
+Name = "Sapphire"
+Sprite = SubResource("SpriteFrames_8aq2v")
+PickupClassOverride = ExtResource("1_w21ok")
+PickupScene = ExtResource("2_sulr5")

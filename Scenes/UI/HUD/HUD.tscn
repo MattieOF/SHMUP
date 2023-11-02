@@ -24,7 +24,7 @@ CurrentLevel = NodePath("HBoxContainer/MarginContainer2/CurrentLevel")
 NextLevel = NodePath("HBoxContainer/MarginContainer/NextLevel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_left = 15.0
 offset_top = 15.0

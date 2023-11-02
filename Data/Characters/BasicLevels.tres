@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="XPToLevelData" load_steps=2 format=3 uid="uid://2rx2nmcxw448"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Data/XPToLevelData.cs" id="1_hx0vv"]
+
+[resource]
+script = ExtResource("1_hx0vv")
+XPNeededForLevel = Array[int]([5, 10, 20, 40])

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3 uid="uid://dj1fwgrbaxu2b"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Data/EnemyData.cs" id="1_8b2dd"]
+
+[resource]
+script = ExtResource("1_8b2dd")
+Name = "Enemy"

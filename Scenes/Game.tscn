@@ -1,51 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyaswgd4sfvkp"]
+[gd_scene load_steps=4 format=3 uid="uid://dyaswgd4sfvkp"]
 
 [ext_resource type="PackedScene" uid="uid://cp2au8wylqawc" path="res://Scenes/Game/Player.tscn" id="1_sdum8"]
 [ext_resource type="Resource" uid="uid://dw3pbbg7lh3a8" path="res://Data/Characters/BasicCharacter.tres" id="2_06ucg"]
-[ext_resource type="PackedScene" uid="uid://ub61uhg0cxsd" path="res://Scenes/Game/CollisionTest.tscn" id="3_dcp5q"]
 [ext_resource type="PackedScene" uid="uid://vols8fvs4gwl" path="res://Scenes/UI/HUD/HUD.tscn" id="4_4dtk2"]
-[ext_resource type="PackedScene" uid="uid://b5mgcwtjc3qun" path="res://Scenes/Game/Gems/Pickup.tscn" id="5_8tod3"]
 
 [node name="Game" type="Node2D"]
-
-[node name="CollisionTest" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(116, 127)
-
-[node name="CollisionTest2" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(199, 397)
-
-[node name="CollisionTest3" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(357, 550)
-
-[node name="CollisionTest4" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(298, 135)
-
-[node name="CollisionTest5" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(510, 102)
-
-[node name="CollisionTest6" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(615, 490)
-
-[node name="CollisionTest7" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(814, 378)
-
-[node name="CollisionTest8" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(712, 103)
-
-[node name="CollisionTest9" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(359, 323)
-
-[node name="CollisionTest10" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(857, 536)
-
-[node name="CollisionTest11" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(982, 378)
-
-[node name="CollisionTest12" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(967, 59)
-
-[node name="CollisionTest13" parent="." instance=ExtResource("3_dcp5q")]
-position = Vector2(987, 204)
 
 [node name="Player" parent="." node_paths=PackedStringArray("HUD") instance=ExtResource("1_sdum8")]
 position = Vector2(576, 322)
@@ -53,21 +12,3 @@ Data = ExtResource("2_06ucg")
 HUD = NodePath("../HUD")
 
 [node name="HUD" parent="." instance=ExtResource("4_4dtk2")]
-
-[node name="Pickup" parent="." instance=ExtResource("5_8tod3")]
-position = Vector2(408, 438)
-
-[node name="Pickup2" parent="." instance=ExtResource("5_8tod3")]
-position = Vector2(490, 554)
-
-[node name="Pickup3" parent="." instance=ExtResource("5_8tod3")]
-position = Vector2(628, 600)
-
-[node name="Pickup4" parent="." instance=ExtResource("5_8tod3")]
-position = Vector2(498, 480)
-
-[node name="Pickup5" parent="." instance=ExtResource("5_8tod3")]
-position = Vector2(433, 529)
-
-[node name="Pickup6" parent="." instance=ExtResource("5_8tod3")]
-position = Vector2(542, 538)

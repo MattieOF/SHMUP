@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 // Thanks to https://kidscancode.org/godot_recipes/3.x/2d/screen_shake/index.html
 

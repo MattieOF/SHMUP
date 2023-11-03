@@ -4,6 +4,8 @@ public partial class ResourcePickup : Pickup
 {
     public override void OnPickup()
     {
+        this.PlaySound2D(GD.Load<AudioStream>("res://Art/Sounds/PickupItem.wav"), GetNode("/root/Game"));
+        
         var notif = Globals.Instance.ResourceNotif.Instantiate<ResourceNotif>();
         notif.SetItemAndAmount(Item, Count);
         notif.GlobalPosition = GlobalPosition;

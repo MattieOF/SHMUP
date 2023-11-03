@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://vols8fvs4gwl"]
+[gd_scene load_steps=6 format=3 uid="uid://vols8fvs4gwl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/HUD.cs" id="1_mgob3"]
 [ext_resource type="FontFile" uid="uid://bokg44dqiybb" path="res://Art/Fonts/Roboto/Roboto-Light.ttf" id="2_cm0ae"]
@@ -11,6 +11,13 @@ corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87tbd"]
+bg_color = Color(0, 0.72549, 0.921569, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6di0d"]
 bg_color = Color(0, 0.72549, 0.411765, 1)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
@@ -89,7 +96,7 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_cij55")
-theme_override_styles/fill = SubResource("StyleBoxFlat_87tbd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6di0d")
 max_value = 1.0
 value = 1.0
 show_percentage = false

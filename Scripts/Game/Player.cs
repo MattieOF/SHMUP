@@ -105,6 +105,9 @@ public partial class Player : CharacterBody2D
 
 	public void Hurt(float dmg)
 	{
+		if (!Alive)
+			return;
+		
 		Health -= dmg;
 		if (Health <= 0)
 			Die();
@@ -131,6 +134,9 @@ public partial class Player : CharacterBody2D
 		_sprite.QueueFree();
 		GetNode("Shape").QueueFree();
 		GetNode("PickupRange").QueueFree();
+		
+		HUD.QueueFree();
+		GetNode("/root/Game").AddChild(GD.Load<PackedScene>("res://Scenes/UI/GameOver.tscn").Instantiate());
 		
 		Visible = false;
 	}

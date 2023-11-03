@@ -4,7 +4,7 @@ using Godot;
 
 public partial class Scythe : Sprite2D
 {
-    [Export] public Player Owner;
+    [Export] public Player OwningPlayer;
     [Export] public float AttackCooldown = 1.5f;
     [Export] public float Range = 150;
     [Export] public float Damage = 20;
@@ -28,7 +28,7 @@ public partial class Scythe : Sprite2D
 
     public override void _Process(double delta)
     {
-        if (!Owner.Alive)
+        if (!OwningPlayer.Alive)
             return;
         
         _attackCooldown -= (float)delta;

@@ -36,12 +36,12 @@ Gems = Array[Object]([ExtResource("2_3lrkn"), ExtResource("3_fr4dx"), ExtResourc
 Resources = Array[Object]([ExtResource("6_ek2t4"), ExtResource("7_halw4"), ExtResource("8_msx2r")])
 TestEnemy = ExtResource("9_y2huo")
 
-[node name="Scythe" type="Sprite2D" parent="." node_paths=PackedStringArray("Owner")]
+[node name="Scythe" type="Sprite2D" parent="." node_paths=PackedStringArray("OwningPlayer")]
 scale = Vector2(1.94876, 2.46991)
 texture = ExtResource("10_p8dms")
 flip_v = true
 script = ExtResource("11_qn73l")
-Owner = NodePath("..")
+OwningPlayer = NodePath("..")
 Range = 250.0
 
 [node name="Collider" type="Area2D" parent="Scythe"]

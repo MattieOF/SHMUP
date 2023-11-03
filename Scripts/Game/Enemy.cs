@@ -97,6 +97,8 @@ public partial class Enemy : CharacterBody2D
 		AddChild(dmgNumber);
 		dmgNumber.GlobalPosition = GlobalPosition;
 		
+		this.PlaySound2D(Data.HurtSound, GetNode("/root/Game"));
+		
 		Health -= dmg;
 		Sprite.Modulate = Colors.Red;
 		if (Health <= 0)

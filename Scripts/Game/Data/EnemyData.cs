@@ -16,4 +16,5 @@ public partial class EnemyData : Resource
     [Export] public LootTable ItemDrop;
     [Export] public Script EnemyClassOverride;
     [Export] public PackedScene Scene = GD.Load<PackedScene>("res://Scenes/Game/Enemy.tscn");
+    [Export] public AudioStream HurtSound = GD.Load<AudioStream>("res://Art/Sounds/Attack.wav");
 }

@@ -7,20 +7,20 @@ public static class Utility
     
     public static AudioStream ChooseRandom(AudioStream[] streams) => streams[RNG.RandiRange(0, streams.Length - 1)];
 
-    public static void PlaySound2D(this Node2D node, AudioStream stream)
+    public static void PlaySound2D(this Node2D node, AudioStream stream, Node parentOverride = null)
     {
         AudioStreamPlayer2D soundPlayer = new AudioStreamPlayer2D();
-        node.AddChild(soundPlayer);
+        (parentOverride ?? node).AddChild(soundPlayer);
         soundPlayer.Stream = stream;
         soundPlayer.GlobalPosition = node.GlobalPosition;
         soundPlayer.Play();
         soundPlayer.Finished += () => soundPlayer.QueueFree();
     }
     
-    public static void PlaySoundUI(this Node node, AudioStream stream)
+    public static void PlaySoundUI(this Node node, AudioStream stream, Node parentOverride = null)
     {
         AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
-        node.AddChild(soundPlayer);
+        (parentOverride ?? node).AddChild(soundPlayer);
         soundPlayer.Stream = stream;
         soundPlayer.Play();
         soundPlayer.Finished += () => soundPlayer.QueueFree();
@@ -50,9 +50,9 @@ public static class Utility
     public static Color MoveToward(Color start, Color target, float delta)
     {
         start.R = Mathf.MoveToward(start.R, target.R, delta);
-        start.R = Mathf.MoveToward(start.G, target.G, delta);
-        start.R = Mathf.MoveToward(start.B, target.B, delta);
-        start.R = Mathf.MoveToward(start.A, target.A, delta);
+        start.G = Mathf.MoveToward(start.G, target.G, delta);
+        start.B = Mathf.MoveToward(start.B, target.B, delta);
+        start.A = Mathf.MoveToward(start.A, target.A, delta);
         return start;
     }
 

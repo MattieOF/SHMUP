@@ -23,13 +23,13 @@ public partial class Pickup : Area2D
 		_sprite = GetNode<AnimatedSprite2D>("Sprite");
 	}
 
-	public void SetItem(ItemData item)
+	public virtual void SetItem(ItemData item)
 	{
 		_item = item;
 		_sprite.SpriteFrames = item.Sprite;
 	}
 	
-	public void PickUp(Player player)
+	public virtual void PickUp(Player player)
 	{
 		if (PickedUp)
 			return;

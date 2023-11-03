@@ -6,8 +6,11 @@ public partial class Player : CharacterBody2D
 	[Export] public CharacterData Data;
 	[Export] public Area2D PickupArea;
 	[Export] public HUD HUD;
+	
+	[ExportCategory("Debug")]
 	[Export] public ItemData[] Gems;
 	[Export] public ItemData[] Resources;
+	[Export] public EnemyData TestEnemy;
 
 	public Inventory Inventory = new();
 	
@@ -68,6 +71,8 @@ public partial class Player : CharacterBody2D
 			(GetNode("/root/Game") as Node2D).SpawnItem(Gems[Utility.RNG.RandiRange(0, Gems.Length - 1)], _camera.GetGlobalMousePosition());
 		if (Input.IsActionPressed("res_test"))
 			(GetNode("/root/Game") as Node2D).SpawnItem(Resources[Utility.RNG.RandiRange(0, Resources.Length - 1)], _camera.GetGlobalMousePosition());
+		if (Input.IsActionJustPressed("enemy_test"))
+			(GetNode("/root/Game") as Node2D).SpawnEnemy(TestEnemy, _camera.GetGlobalMousePosition());
 	}
 
 	public override void _PhysicsProcess(double delta)

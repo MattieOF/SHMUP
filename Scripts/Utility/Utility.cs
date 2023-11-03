@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 public static class Utility
 {
@@ -36,7 +37,7 @@ public static class Utility
         return start;
     }
 
-    public static Pickup SpawnItem(this Node2D root, ItemData item, Vector2 location)
+    public static Pickup SpawnItem(this Node2D root, ItemData item, Vector2 location, int count = 1)
     {
         var pickup = item.PickupScene.Instantiate();
 
@@ -51,8 +52,23 @@ public static class Utility
         
         root.AddChild(pickup);
         asPickup!.SetItem(item);
+        asPickup.Count = count;
         asPickup.GlobalPosition = location;
         return asPickup;
+    }
+
+    public static Pickup SpawnItem(this Node2D root, ItemStack item, Vector2 location) =>
+        SpawnItem(root, item.Data, location, item.Count);
+
+    public static void SpawnItems(this Node2D root, IEnumerable<ItemStack> items, Vector2 location,
+        Vector2 locationRange)
+    {
+        foreach (var item in items)
+        {
+            root.SpawnItem(item,
+                location + new Vector2(Utility.RNG.RandfRange(-locationRange.X / 2, locationRange.X / 2),
+                    RNG.RandfRange(-locationRange.Y / 2, locationRange.Y / 2)));
+        }
     }
 
     public static Enemy SpawnEnemy(this Node2D root, EnemyData enemy, Vector2 location)

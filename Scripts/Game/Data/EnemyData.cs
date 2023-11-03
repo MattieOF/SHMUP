@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Godot.Collections;
 
 [GlobalClass]
 public partial class EnemyData : Resource

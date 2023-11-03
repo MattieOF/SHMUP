@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4f5me4gas7q5"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Enemy.cs" id="1_e57pc"]
+[ext_resource type="SpriteFrames" uid="uid://cy5bpvy4rdmw8" path="res://Art/Enemies/Bug/bug_animations.tres" id="2_45vj0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_er8kh"]
+radius = 47.0
+height = 134.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qkovs"]
+radius = 85.0235
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Sprite") groups=["Player"]]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_e57pc")
+Sprite = NodePath("Sprite")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_45vj0")
+animation = &"horizontal"
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_er8kh")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="AttackShape" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_qkovs")

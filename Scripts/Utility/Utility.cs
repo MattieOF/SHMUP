@@ -54,4 +54,23 @@ public static class Utility
         asPickup.GlobalPosition = location;
         return asPickup;
     }
+
+    public static Enemy SpawnEnemy(this Node2D root, EnemyData enemy, Vector2 location)
+    {
+        var enemyObj = enemy.Scene.Instantiate();
+
+        if (enemy.EnemyClassOverride is not null)
+        {
+            var id = enemyObj.GetInstanceId();
+            enemyObj.SetScript(enemy.EnemyClassOverride);
+            enemyObj = GodotObject.InstanceFromId(id) as Node;
+        }
+
+        var asEnemy = enemyObj as Enemy;
+        
+        root.AddChild(enemyObj);
+        asEnemy!.SetData(enemy);
+        asEnemy.GlobalPosition = location;
+        return asEnemy;
+    }
 }

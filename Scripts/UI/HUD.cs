@@ -2,9 +2,18 @@ using Godot;
 
 public partial class HUD : CanvasLayer
 {
-	[ExportCategory("Level Bar")]
-	[Export] public ProgressBar LevelBar, HealthBar;
+	[ExportCategory("Level Bar")] 
+	[Export] public ProgressBar LevelBar;
 	[Export] public Label CurrentLevel, NextLevel;
+
+	[ExportCategory("Bridge UI")] 
+	[Export] public Panel BridgePanelUI;
+	[Export] public HBoxContainer BridgePanelContainer;
+	
+	[ExportCategory("Other")]
+	[Export] public ProgressBar HealthBar;
+
+	private static PackedScene _resourceNotif = GD.Load<PackedScene>("res://Scenes/UI/ResourceNotif.tscn");
 
 	public void SetLevel(float level)
 	{
@@ -27,5 +36,22 @@ public partial class HUD : CanvasLayer
 		var fill = HealthBar.GetThemeStylebox("fill");
 		(fill as StyleBoxFlat)!.BgColor = Colors.Red.Lerp(Colors.Green, percent);
 		HealthBar.AddThemeStyleboxOverride("fill", fill);
+	}
+
+	public void HideBridgeUI() => BridgePanelUI.Visible = false;
+
+	public void ShowBridgeUI(BridgeTrigger bridge)
+	{
+		foreach (var child in BridgePanelContainer.GetChildren())
+			child.QueueFree();
+
+		foreach (var resource in bridge.Requirements)
+		{
+			var ui = _resourceNotif.Instantiate() as ResourceNotif;
+			ui!.SetItemAndAmount(resource.Key, resource.Value, false, true, false);
+			BridgePanelContainer.AddChild(ui);
+		}
+		
+		BridgePanelUI.Visible = true;
 	}
 }

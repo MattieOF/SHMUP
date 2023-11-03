@@ -23,7 +23,8 @@ public partial class Player : CharacterBody2D
 	private Vector2 _movement, _targetCamOffset;
 	private bool _movingLastFrame;
 	private PackedScene _bloodParticle = GD.Load<PackedScene>("res://Scenes/Particles/Blood.tscn");
-	
+	private PackedScene _damageNumberScene = GD.Load<PackedScene>("res://Scenes/UI/DamageNumber.tscn");
+
 	public override void _Ready()
 	{
 		_sprite = GetNode<AnimatedSprite2D>("Sprite");
@@ -106,6 +107,14 @@ public partial class Player : CharacterBody2D
 		particles.Emitting = true;
 		GetTree().CreateTimer(4, false).Timeout += () => particles.QueueFree();
 		
+		var dmgNumber = _damageNumberScene.Instantiate() as DamageNumber;
+		dmgNumber!.Velocity = new Vector2(Utility.RNG.RandfRange(-60, 60), Utility.RNG.RandfRange(-60, -20));
+		dmgNumber.AngularVelocity = Utility.RNG.RandfRange(-80, 80);
+		dmgNumber.Color = dmg < 0 ? Colors.Green : Colors.Red;
+		dmgNumber.Text = Mathf.Abs(dmg).ToString("F1"); // Abs so bodged healing via negative dmg doesn't show as negative
+		AddChild(dmgNumber);
+		dmgNumber.GlobalPosition = GlobalPosition;
+		
 		HUD.UpdateHealthBar(Health / MaxHealth);
 	}
 
@@ -141,6 +150,8 @@ public class Inventory
 	public int Get(ItemData itemType) => _inv.ContainsKey(itemType) ? _inv[itemType] : 0;
 
 	public bool HasAny(ItemData itemType) => _inv.ContainsKey(itemType);
+
+	public bool Has(ItemData item, int count) => HasAny(item) && _inv[item] >= count;
 
 	[Command("print_inv")]
 	public static bool PrintInventory(CommandArguments args)

@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bokg44dqiybb" path="res://Art/Fonts/Roboto/Roboto-Light.ttf" id="3_lln55"]
 
 [node name="ResourceNotif" type="HBoxContainer" node_paths=PackedStringArray("Icon", "Amount", "ItemName")]
+size_flags_horizontal = 6
 script = ExtResource("1_xa7lk")
 Icon = NodePath("ItemIcon")
 Amount = NodePath("Amount")
@@ -31,3 +32,7 @@ theme_override_fonts/font = ExtResource("3_lln55")
 text = "Wood
 "
 vertical_alignment = 2
+
+[node name="Spacing" type="Control" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2

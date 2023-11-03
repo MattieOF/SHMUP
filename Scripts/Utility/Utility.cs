@@ -9,11 +9,21 @@ public static class Utility
 
     public static void PlaySound2D(this Node2D node, AudioStream stream)
     {
-        AudioStreamPlayer2D punchPlayer = new AudioStreamPlayer2D();
-        node.AddChild(punchPlayer);
-        punchPlayer.Stream = stream;
-        punchPlayer.Play();
-        punchPlayer.Finished += () => punchPlayer.QueueFree();
+        AudioStreamPlayer2D soundPlayer = new AudioStreamPlayer2D();
+        node.AddChild(soundPlayer);
+        soundPlayer.Stream = stream;
+        soundPlayer.GlobalPosition = node.GlobalPosition;
+        soundPlayer.Play();
+        soundPlayer.Finished += () => soundPlayer.QueueFree();
+    }
+    
+    public static void PlaySoundUI(this Node node, AudioStream stream)
+    {
+        AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
+        node.AddChild(soundPlayer);
+        soundPlayer.Stream = stream;
+        soundPlayer.Play();
+        soundPlayer.Finished += () => soundPlayer.QueueFree();
     }
 
     public static float EaseInExpo(float value, float expo)
@@ -34,6 +44,15 @@ public static class Utility
     {
         start.X = Mathf.MoveToward(start.X, target.X, delta.X);
         start.Y = Mathf.MoveToward(start.Y, target.Y, delta.Y);
+        return start;
+    }
+
+    public static Color MoveToward(Color start, Color target, float delta)
+    {
+        start.R = Mathf.MoveToward(start.R, target.R, delta);
+        start.R = Mathf.MoveToward(start.G, target.G, delta);
+        start.R = Mathf.MoveToward(start.B, target.B, delta);
+        start.R = Mathf.MoveToward(start.A, target.A, delta);
         return start;
     }
 

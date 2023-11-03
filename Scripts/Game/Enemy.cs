@@ -11,6 +11,7 @@ public partial class Enemy : CharacterBody2D
 
 	private Player _target;
 	private float _attackCooldown;
+	private PackedScene _damageNumberScene = GD.Load<PackedScene>("res://Scenes/UI/DamageNumber.tscn");
 
 	public override void _Ready()
 	{
@@ -49,6 +50,8 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
+		Sprite.Modulate = Utility.MoveToward(Sprite.Modulate, Colors.White, (float)delta * 2);
+		
 		if (_target is not null)
 		{
 			if (_attackCooldown > 0)
@@ -82,6 +85,22 @@ public partial class Enemy : CharacterBody2D
 		var scale = Utility.RNG.RandfRange(data.ScaleRange.X, data.ScaleRange.Y);
 		Scale = new Vector2(scale, scale);
 		(GetNode<CollisionShape2D>("AttackRange/AttackShape").Shape as CircleShape2D)!.Radius = data.AttackRadius;
+	}
+
+	public virtual void Hurt(float dmg)
+	{
+		var dmgNumber = _damageNumberScene.Instantiate() as DamageNumber;
+		dmgNumber!.Velocity = new Vector2(Utility.RNG.RandfRange(-60, 60), Utility.RNG.RandfRange(-60, -20));
+		dmgNumber.AngularVelocity = Utility.RNG.RandfRange(-80, 80);
+		dmgNumber.Color = dmg < 0 ? Colors.Green : Colors.Red;
+		dmgNumber.Text = (-dmg).ToString("F1"); // Abs so bodged healing via negative dmg doesn't show as negative
+		AddChild(dmgNumber);
+		dmgNumber.GlobalPosition = GlobalPosition;
+		
+		Health -= dmg;
+		Sprite.Modulate = Colors.Red;
+		if (Health <= 0)
+			Die();
 	}
 
 	public virtual void Die()

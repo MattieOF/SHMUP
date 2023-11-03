@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://vols8fvs4gwl"]
+[gd_scene load_steps=8 format=3 uid="uid://vols8fvs4gwl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/HUD.cs" id="1_mgob3"]
 [ext_resource type="FontFile" uid="uid://bokg44dqiybb" path="res://Art/Fonts/Roboto/Roboto-Light.ttf" id="2_cm0ae"]
+[ext_resource type="Theme" uid="uid://dgajli7lqyn44" path="res://Scenes/UI/label_theme.tres" id="3_fxxnx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cij55"]
 bg_color = Color(0.14902, 0.14902, 0.14902, 0.588235)
@@ -24,12 +25,25 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("LevelBar", "HealthBar", "CurrentLevel", "NextLevel")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oh7g"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 0.588235)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("LevelBar", "CurrentLevel", "NextLevel", "BridgePanelUI", "BridgePanelContainer", "HealthBar")]
 script = ExtResource("1_mgob3")
 LevelBar = NodePath("HBoxContainer/LevelBar")
-HealthBar = NodePath("Health/HealthBar")
 CurrentLevel = NodePath("HBoxContainer/MarginContainer2/CurrentLevel")
 NextLevel = NodePath("HBoxContainer/MarginContainer/NextLevel")
+BridgePanelUI = NodePath("BuildBridgeUI")
+BridgePanelContainer = NodePath("BuildBridgeUI/BridgeResources")
+HealthBar = NodePath("Health/HealthBar")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 10
@@ -100,3 +114,40 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6di0d")
 max_value = 1.0
 value = 1.0
 show_percentage = false
+
+[node name="BuildBridgeUI" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 60)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 176.0
+offset_right = 200.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8oh7g")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BuildBridgeUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("3_fxxnx")
+bbcode_enabled = true
+text = "[center][b]E[/b]    Build Bridge"
+fit_content = true
+
+[node name="BridgeResources" type="HBoxContainer" parent="BuildBridgeUI"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0

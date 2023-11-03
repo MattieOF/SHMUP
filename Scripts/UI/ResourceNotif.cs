@@ -8,9 +8,14 @@ public partial class ResourceNotif : HBoxContainer
 
 	[Export] public TextureRect Icon;
 	[Export] public Label Amount, ItemName;
+
+	private bool _doFade = true;
 	
 	public override void _Ready()
 	{
+		if (!_doFade)
+			return;
+		
 		var tween = CreateTween();
 		tween.TweenMethod(Callable.From<float>(alpha =>
 		{
@@ -32,10 +37,13 @@ public partial class ResourceNotif : HBoxContainer
 		AngularVelocity -= AngularVelocity * (float) delta * 0.5f;
 	}
 	
-	public void SetItemAndAmount(ItemData item, int amount)
+	public void SetItemAndAmount(ItemData item, int amount, bool includePlus = true, bool includeSpacing = false, bool doFade = true)
 	{
 		Icon.Texture = item.Icon;
-		Amount.Text = $"+{amount}";
+		Amount.Text = $"{(includePlus ? "+" : "")}{amount}";
 		ItemName.Text = item.Name;
+		if (!includeSpacing)
+			GetNode("Spacing").QueueFree();
+		_doFade = doFade;
 	}
 }

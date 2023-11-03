@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=38 format=3 uid="uid://cby2jqkxp1bu4"]
+[gd_resource type="TileSet" load_steps=41 format=3 uid="uid://cby2jqkxp1bu4"]
 
 [ext_resource type="Texture2D" uid="uid://cp7wbd67dy2x2" path="res://Art/Tileset.png" id="1_rgxai"]
 
@@ -38,6 +38,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(8, -8, -4, -8, -4, 4, 8
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ec8mo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xqy7h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_u5r15"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qrmmj"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -159,6 +164,16 @@ vertices = PackedVector2Array(4, -8, 4, 4, -8, 4, -8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, -8, 4, 4, 4, 4, -8)])
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_k2001"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6x686"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_of2bv"]
 texture = ExtResource("1_rgxai")
 0:0/0 = 0
@@ -245,12 +260,15 @@ texture = ExtResource("1_rgxai")
 20:0/0 = 0
 20:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:0/0/physics_layer_0/angular_velocity = 0.0
+20:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 21:0/0 = 0
 21:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 21:0/0/physics_layer_0/angular_velocity = 0.0
+21:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 22:0/0 = 0
 22:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 22:0/0/physics_layer_0/angular_velocity = 0.0
+22:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
@@ -333,12 +351,15 @@ texture = ExtResource("1_rgxai")
 20:1/0 = 0
 20:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:1/0/physics_layer_0/angular_velocity = 0.0
+20:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 21:1/0 = 0
 21:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 21:1/0/physics_layer_0/angular_velocity = 0.0
+21:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 22:1/0 = 0
 22:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 22:1/0/physics_layer_0/angular_velocity = 0.0
+22:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
@@ -421,12 +442,15 @@ texture = ExtResource("1_rgxai")
 20:2/0 = 0
 20:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:2/0/physics_layer_0/angular_velocity = 0.0
+20:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 21:2/0 = 0
 21:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 21:2/0/physics_layer_0/angular_velocity = 0.0
+21:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 22:2/0 = 0
 22:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 22:2/0/physics_layer_0/angular_velocity = 0.0
+22:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 0:3/0 = 0
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
@@ -465,9 +489,13 @@ texture = ExtResource("1_rgxai")
 8:3/0 = 0
 8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:3/0/physics_layer_0/angular_velocity = 0.0
+8:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k2001")
 9:3/0 = 0
 9:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:3/0/physics_layer_0/angular_velocity = 0.0
+9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -7, -8, -7)
+9:3/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, 7, 8, 7, 8, 8, -8, 8)
+9:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6x686")
 10:3/0 = 0
 10:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:3/0/physics_layer_0/angular_velocity = 0.0
@@ -496,21 +524,27 @@ texture = ExtResource("1_rgxai")
 17:3/0 = 0
 17:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:3/0/physics_layer_0/angular_velocity = 0.0
+17:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 18:3/0 = 0
 18:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 18:3/0/physics_layer_0/angular_velocity = 0.0
+18:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 19:3/0 = 0
 19:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:3/0/physics_layer_0/angular_velocity = 0.0
+19:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 20:3/0 = 0
 20:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:3/0/physics_layer_0/angular_velocity = 0.0
+20:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 21:3/0 = 0
 21:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 21:3/0/physics_layer_0/angular_velocity = 0.0
+21:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 22:3/0 = 0
 22:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 22:3/0/physics_layer_0/angular_velocity = 0.0
+22:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 0:4/0 = 0
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
@@ -577,21 +611,27 @@ texture = ExtResource("1_rgxai")
 17:4/0 = 0
 17:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:4/0/physics_layer_0/angular_velocity = 0.0
+17:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 18:4/0 = 0
 18:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 18:4/0/physics_layer_0/angular_velocity = 0.0
+18:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 19:4/0 = 0
 19:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:4/0/physics_layer_0/angular_velocity = 0.0
+19:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 20:4/0 = 0
 20:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:4/0/physics_layer_0/angular_velocity = 0.0
+20:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 21:4/0 = 0
 21:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 21:4/0/physics_layer_0/angular_velocity = 0.0
+21:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 22:4/0 = 0
 22:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 22:4/0/physics_layer_0/angular_velocity = 0.0
+22:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 0:5/0 = 0
 0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:5/0/physics_layer_0/angular_velocity = 0.0
@@ -646,21 +686,27 @@ texture = ExtResource("1_rgxai")
 17:5/0 = 0
 17:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:5/0/physics_layer_0/angular_velocity = 0.0
+17:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 18:5/0 = 0
 18:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 18:5/0/physics_layer_0/angular_velocity = 0.0
+18:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 19:5/0 = 0
 19:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:5/0/physics_layer_0/angular_velocity = 0.0
+19:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 20:5/0 = 0
 20:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:5/0/physics_layer_0/angular_velocity = 0.0
+20:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 21:5/0 = 0
 21:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 21:5/0/physics_layer_0/angular_velocity = 0.0
+21:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 22:5/0 = 0
 22:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 22:5/0/physics_layer_0/angular_velocity = 0.0
+22:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_u5r15")
 0:6/0 = 0
 0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:6/0/physics_layer_0/angular_velocity = 0.0

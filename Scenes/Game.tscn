@@ -55,7 +55,7 @@ script = ExtResource("6_i74xh")
 TileMap = NodePath("../TileMap")
 TilemapLayer = 2
 Requirements = {
-ExtResource("7_gekdg"): 200
+ExtResource("7_gekdg"): 800
 }
 FailSound = ExtResource("8_g1nsy")
 PlaceSound = ExtResource("9_8puy2")

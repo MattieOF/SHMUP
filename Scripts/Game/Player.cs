@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -13,6 +14,8 @@ public partial class Player : CharacterBody2D
 	[Export] public EnemyData TestEnemy;
 
 	public Inventory Inventory = new();
+
+	public bool Alive => Health > 0;
 	
 	public int XP { get; private set; }
 	public float MaxHealth = 100;
@@ -38,10 +41,15 @@ public partial class Player : CharacterBody2D
 		Health = MaxHealth;
 
 		PickupArea.AreaEntered += area => (area as Pickup)?.PickUp(this);
+
+		Inventory.OnInventoryUpdated += () => HUD.UpdateResourceUI(this);
 	}
 
 	public override void _Process(double delta)
 	{
+		if (!Alive)
+			return;
+		
 		// Get input
 		int horizontal = (Input.IsActionPressed("right") ? 1 : 0) - (Input.IsActionPressed("left") ? 1 : 0);
 		int vertical = (Input.IsActionPressed("down") ? 1 : 0) - (Input.IsActionPressed("up") ? 1 : 0);
@@ -120,20 +128,28 @@ public partial class Player : CharacterBody2D
 
 	public void Die()
 	{
+		_sprite.QueueFree();
+		GetNode("Shape").QueueFree();
+		GetNode("PickupRange").QueueFree();
 		
+		Visible = false;
 	}
 }
 
 public class Inventory
 {
+	public Action OnInventoryUpdated;
+	
 	private Dictionary<ItemData, int> _inv = new();
-
+	
 	public void Add(ItemData itemType, int amount)
 	{
 		if (_inv.ContainsKey(itemType))
 			_inv[itemType] += amount;
 		else
 			_inv.Add(itemType, amount);
+
+		OnInventoryUpdated();
 	}
 
 	public void Remove(ItemData itemType, int amount)
@@ -145,6 +161,8 @@ public class Inventory
 
 		if (_inv[itemType] <= 0)
 			_inv.Remove(itemType);
+		
+		OnInventoryUpdated();
 	}
 
 	public int Get(ItemData itemType) => _inv.ContainsKey(itemType) ? _inv[itemType] : 0;

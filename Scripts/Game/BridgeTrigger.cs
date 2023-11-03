@@ -54,6 +54,7 @@ public partial class BridgeTrigger : Area2D
 					_player.Inventory.Remove(requirement.Key, requirement.Value);
 				
 				TileMap.SetLayerEnabled(TilemapLayer, true);
+				this.PlaySoundUI(PlaceSound, GetNode("/root/Game"));
 				
 				QueueFree();
 			}

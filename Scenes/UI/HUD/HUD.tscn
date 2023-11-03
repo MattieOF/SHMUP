@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://vols8fvs4gwl"]
+[gd_scene load_steps=9 format=3 uid="uid://vols8fvs4gwl"]
 
 [ext_resource type="Script" path="res://Scripts/UI/HUD.cs" id="1_mgob3"]
 [ext_resource type="FontFile" uid="uid://bokg44dqiybb" path="res://Art/Fonts/Roboto/Roboto-Light.ttf" id="2_cm0ae"]
+[ext_resource type="Resource" uid="uid://bth0jewv3wxww" path="res://Data/Items/Resources/Wood.tres" id="2_w65fr"]
 [ext_resource type="Theme" uid="uid://dgajli7lqyn44" path="res://Scenes/UI/label_theme.tres" id="3_fxxnx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cij55"]
@@ -36,16 +37,18 @@ expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("LevelBar", "CurrentLevel", "NextLevel", "BridgePanelUI", "BridgePanelContainer", "HealthBar")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("LevelBar", "CurrentLevel", "NextLevel", "BridgePanelUI", "BridgePanelContainer", "HealthBar", "ResourcesContainer")]
 script = ExtResource("1_mgob3")
-LevelBar = NodePath("HBoxContainer/LevelBar")
-CurrentLevel = NodePath("HBoxContainer/MarginContainer2/CurrentLevel")
-NextLevel = NodePath("HBoxContainer/MarginContainer/NextLevel")
+LevelBar = NodePath("LevelBarContainer/LevelBar")
+CurrentLevel = NodePath("LevelBarContainer/MarginContainer2/CurrentLevel")
+NextLevel = NodePath("LevelBarContainer/MarginContainer/NextLevel")
 BridgePanelUI = NodePath("BuildBridgeUI")
 BridgePanelContainer = NodePath("BuildBridgeUI/BridgeResources")
 HealthBar = NodePath("Health/HealthBar")
+ResourcesContainer = NodePath("ResourcesUI")
+TrackedResources = Array[Object]([ExtResource("2_w65fr")])
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="LevelBarContainer" type="HBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 15.0
@@ -54,16 +57,16 @@ offset_right = -15.0
 offset_bottom = 50.0
 grow_horizontal = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="LevelBarContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 15
 
-[node name="CurrentLevel" type="Label" parent="HBoxContainer/MarginContainer2"]
+[node name="CurrentLevel" type="Label" parent="LevelBarContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_cm0ae")
 text = "LVL 1"
 
-[node name="LevelBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="LevelBar" type="ProgressBar" parent="LevelBarContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -72,11 +75,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_87tbd")
 max_value = 1.0
 show_percentage = false
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LevelBarContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 
-[node name="NextLevel" type="Label" parent="HBoxContainer/MarginContainer"]
+[node name="NextLevel" type="Label" parent="LevelBarContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_stretch_ratio = 0.0
@@ -151,3 +154,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="ResourcesUI" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 400)
+offset_left = 15.0
+offset_top = 61.0
+offset_right = 55.0
+offset_bottom = 101.0

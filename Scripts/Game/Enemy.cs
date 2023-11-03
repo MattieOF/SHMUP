@@ -9,12 +9,14 @@ public partial class Enemy : CharacterBody2D
 
 	public float Health;
 
-	private Player _target;
+	private Player _moveTarget, _target;
 	private float _attackCooldown;
 	private PackedScene _damageNumberScene = GD.Load<PackedScene>("res://Scenes/UI/DamageNumber.tscn");
 
 	public override void _Ready()
 	{
+		_moveTarget = GetTree().GetFirstNodeInGroup("Player") as Player;
+		
 		PlayerDetector.BodyEntered += player => _target = player as Player;
 		PlayerDetector.BodyExited += player =>
 		{
@@ -28,7 +30,7 @@ public partial class Enemy : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 dir;
-		NavAgent.TargetPosition = GetGlobalMousePosition();
+		NavAgent.TargetPosition = _moveTarget.Alive ? _moveTarget.GlobalPosition : GetGlobalMousePosition();
 		dir = (NavAgent.GetNextPathPosition() - GlobalPosition).Normalized();
 		Velocity = Velocity.Lerp(dir * Data.MoveSpeed, Data.TurnSpeed * (float)delta);
 

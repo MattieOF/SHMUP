@@ -37,7 +37,7 @@ public partial class ResourceNotif : HBoxContainer
 		AngularVelocity -= AngularVelocity * (float) delta * 0.5f;
 	}
 	
-	public void SetItemAndAmount(ItemData item, int amount, bool includePlus = true, bool includeSpacing = false, bool doFade = true)
+	public void Initialise(ItemData item, int amount, bool includePlus = true, bool includeSpacing = false, bool doFade = true)
 	{
 		Icon.Texture = item.Icon;
 		Amount.Text = $"{(includePlus ? "+" : "")}{amount}";
@@ -45,5 +45,10 @@ public partial class ResourceNotif : HBoxContainer
 		if (!includeSpacing)
 			GetNode("Spacing").QueueFree();
 		_doFade = doFade;
+	}
+
+	public void SetAmount(int amount, bool includePlus = true)
+	{
+		Amount.Text = $"{(includePlus ? "+" : "")}{amount}";
 	}
 }

@@ -22,6 +22,7 @@ Elements = Array[Object]([SubResource("Resource_6kmka")])
 [resource]
 script = ExtResource("1_kqa3b")
 Name = "Bug"
+ScaleRange = Vector2(0.35, 0.5)
 MaxHP = 50.0
 Sprite = ExtResource("2_2ugjh")
 GemDrop = ExtResource("1_ykk8v")

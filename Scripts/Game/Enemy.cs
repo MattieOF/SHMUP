@@ -27,6 +27,8 @@ public partial class Enemy : CharacterBody2D
 		
 		Health = data.MaxHP;
 		Sprite.SpriteFrames = data.Sprite;
+		var scale = Utility.RNG.RandfRange(data.ScaleRange.X, data.ScaleRange.Y);
+		Scale = new Vector2(scale, scale);
 	}
 
 	public virtual void Die()

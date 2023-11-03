@@ -8,6 +8,9 @@ public partial class EnemyData : Resource
     [Export] public float MaxHP = 100;
     [Export] public float MoveSpeed = 300;
     [Export] public float TurnSpeed = 7;
+    [Export] public float AttackCooldown = 1;
+    [Export] public float AttackRadius = 90;
+    [Export] public float BaseDamage = 10;
     [Export] public SpriteFrames Sprite;
     [Export] public LootTable GemDrop;
     [Export] public LootTable ItemDrop;

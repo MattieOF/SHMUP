@@ -11,15 +11,16 @@ corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87tbd"]
-bg_color = Color(0.278431, 0.623529, 0.92549, 1)
+bg_color = Color(0, 0.72549, 0.411765, 1)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("LevelBar", "CurrentLevel", "NextLevel")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("LevelBar", "HealthBar", "CurrentLevel", "NextLevel")]
 script = ExtResource("1_mgob3")
 LevelBar = NodePath("HBoxContainer/LevelBar")
+HealthBar = NodePath("Health/HealthBar")
 CurrentLevel = NodePath("HBoxContainer/MarginContainer2/CurrentLevel")
 NextLevel = NodePath("HBoxContainer/MarginContainer/NextLevel")
 
@@ -61,3 +62,34 @@ size_flags_stretch_ratio = 0.0
 theme_override_fonts/font = ExtResource("2_cm0ae")
 text = "2"
 horizontal_alignment = 2
+
+[node name="Health" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -40.0
+offset_right = 63.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+
+[node name="HPLabel" type="Label" parent="Health"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_cm0ae")
+text = "HP"
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="Health"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_cij55")
+theme_override_styles/fill = SubResource("StyleBoxFlat_87tbd")
+max_value = 1.0
+value = 1.0
+show_percentage = false

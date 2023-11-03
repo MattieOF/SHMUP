@@ -15,11 +15,14 @@ public partial class Player : CharacterBody2D
 	public Inventory Inventory = new();
 	
 	public int XP { get; private set; }
+	public float MaxHealth = 100;
+	public float Health = 100;
 
 	private AnimatedSprite2D _sprite;
 	private PlayerCamera _camera;
 	private Vector2 _movement, _targetCamOffset;
 	private bool _movingLastFrame;
+	private PackedScene _bloodParticle = GD.Load<PackedScene>("res://Scenes/Particles/Blood.tscn");
 	
 	public override void _Ready()
 	{
@@ -29,6 +32,9 @@ public partial class Player : CharacterBody2D
 		_sprite.Stop();
 
 		_camera = GetNode<PlayerCamera>("Camera");
+
+		MaxHealth = Data.BaseHealth;
+		Health = MaxHealth;
 
 		PickupArea.AreaEntered += area => (area as Pickup)?.PickUp(this);
 	}
@@ -86,6 +92,26 @@ public partial class Player : CharacterBody2D
 	{
 		XP += xp;
 		HUD.SetLevel(Data.XPToLevelData.GetLevel(XP));
+	}
+
+	public void Hurt(float dmg)
+	{
+		Health -= dmg;
+		if (Health <= 0)
+			Die();
+		
+		var particles = _bloodParticle.Instantiate<GpuParticles2D>();
+		GetParent().AddChild(particles);
+		particles.GlobalPosition = GlobalPosition;
+		particles.Emitting = true;
+		GetTree().CreateTimer(4, false).Timeout += () => particles.QueueFree();
+		
+		HUD.UpdateHealthBar(Health / MaxHealth);
+	}
+
+	public void Die()
+	{
+		
 	}
 }
 

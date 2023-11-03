@@ -5,11 +5,22 @@ public partial class Enemy : CharacterBody2D
 	[Export] public EnemyData Data;
 	[Export] public AnimatedSprite2D Sprite;
 	[Export] public NavigationAgent2D NavAgent;
+	[Export] public Area2D PlayerDetector;
 
 	public float Health;
 
+	private Player _target;
+	private float _attackCooldown;
+
 	public override void _Ready()
 	{
+		PlayerDetector.BodyEntered += player => _target = player as Player;
+		PlayerDetector.BodyExited += player =>
+		{
+			if ((player as Player) == _target)
+				_target = null;
+		};
+		
 		SetData(Data);
 	}
 
@@ -36,6 +47,23 @@ public partial class Enemy : CharacterBody2D
 		MoveAndSlide();
 	}
 
+	public override void _Process(double delta)
+	{
+		if (_target is not null)
+		{
+			if (_attackCooldown > 0)
+				_attackCooldown -= (float)delta;
+			else
+				Attack();
+		}
+	}
+
+	public virtual void Attack()
+	{
+		_target.Hurt(Data.BaseDamage);
+		_attackCooldown = Data.AttackCooldown;
+	}
+
 	public void SetData(EnemyData data)
 	{
 		if (Data == data)
@@ -53,6 +81,7 @@ public partial class Enemy : CharacterBody2D
 		Sprite.SpriteFrames = data.Sprite;
 		var scale = Utility.RNG.RandfRange(data.ScaleRange.X, data.ScaleRange.Y);
 		Scale = new Vector2(scale, scale);
+		(GetNode<CollisionShape2D>("AttackRange/AttackShape").Shape as CircleShape2D)!.Radius = data.AttackRadius;
 	}
 
 	public virtual void Die()

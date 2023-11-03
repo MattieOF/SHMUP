@@ -8,6 +8,8 @@ public partial class Pickup : Area2D
 		get => _item;
 		set => SetItem(value);
 	}
+
+	public int Count = 1;
 	public bool PickedUp { get; private set; }
 
 	private ItemData _item;

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="LootTable" load_steps=11 format=3 uid="uid://6rlnop1r11q7"]
+
+[ext_resource type="Resource" uid="uid://c8d3akvomnrax" path="res://Data/Items/Gems/Ruby.tres" id="1_juxns"]
+[ext_resource type="Script" path="res://Scripts/Game/Data/Loot/LootElement.cs" id="2_a30ir"]
+[ext_resource type="Resource" uid="uid://ph6d22lq6xtj" path="res://Data/Items/Gems/Sapphire.tres" id="3_3ho7g"]
+[ext_resource type="Resource" uid="uid://dttowi354kawj" path="res://Data/Items/Gems/Emerald.tres" id="4_qe1my"]
+[ext_resource type="Resource" uid="uid://dt7u5i6h3od2q" path="res://Data/Items/Gems/Diamond.tres" id="5_merpu"]
+[ext_resource type="Script" path="res://Scripts/Game/Data/Loot/LootTable.cs" id="6_6baub"]
+
+[sub_resource type="Resource" id="Resource_dy6wr"]
+script = ExtResource("2_a30ir")
+Item = ExtResource("1_juxns")
+CountRange = Vector2(1, 1)
+Weight = 10.0
+
+[sub_resource type="Resource" id="Resource_u2c56"]
+script = ExtResource("2_a30ir")
+Item = ExtResource("3_3ho7g")
+CountRange = Vector2(1, 1)
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_mvjfu"]
+script = ExtResource("2_a30ir")
+Item = ExtResource("4_qe1my")
+CountRange = Vector2(1, 1)
+Weight = 0.8
+
+[sub_resource type="Resource" id="Resource_5un2t"]
+script = ExtResource("2_a30ir")
+Item = ExtResource("5_merpu")
+CountRange = Vector2(1, 1)
+Weight = 0.08
+
+[resource]
+script = ExtResource("6_6baub")
+RollCountRange = Vector2(1, 1)
+Elements = Array[Object]([SubResource("Resource_dy6wr"), SubResource("Resource_u2c56"), SubResource("Resource_mvjfu"), SubResource("Resource_5un2t")])

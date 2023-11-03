@@ -14,15 +14,15 @@ public partial class XPToLevelData : Resource
             switch (xp)
             {
                 case 0:
-                    return i + 1;
+                    return i + 2;
                 case < 0:
-                    return i + ((float)XP / XPNeededForLevel[i]);
+                    return i + ((float)XP / XPNeededForLevel[i]) + 1;
                 default:
                     XP -= XPNeededForLevel[i];
                     break;
             }
         }
 
-        return XPNeededForLevel.Count + ((float)XP / XPNeededForLevel[^1]);
+        return 1 + XPNeededForLevel.Count + ((float)XP / XPNeededForLevel[^1]);
     }
 }

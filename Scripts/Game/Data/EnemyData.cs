@@ -6,6 +6,8 @@ public partial class EnemyData : Resource
     [Export] public string Name = "Enemy";
     [Export] public Vector2 ScaleRange = new(1, 1);
     [Export] public float MaxHP = 100;
+    [Export] public float MoveSpeed = 300;
+    [Export] public float TurnSpeed = 7;
     [Export] public SpriteFrames Sprite;
     [Export] public LootTable GemDrop;
     [Export] public LootTable ItemDrop;

@@ -4,12 +4,36 @@ public partial class Enemy : CharacterBody2D
 {
 	[Export] public EnemyData Data;
 	[Export] public AnimatedSprite2D Sprite;
+	[Export] public NavigationAgent2D NavAgent;
 
 	public float Health;
 
 	public override void _Ready()
 	{
 		SetData(Data);
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 dir;
+		NavAgent.TargetPosition = GetGlobalMousePosition();
+		dir = (NavAgent.GetNextPathPosition() - GlobalPosition).Normalized();
+		Velocity = Velocity.Lerp(dir * Data.MoveSpeed, Data.TurnSpeed * (float)delta);
+
+		if (Mathf.Abs(Velocity.X) < Mathf.Abs(Velocity.Y))
+		{
+			Sprite.Play("vertical");
+			Sprite.FlipH = false;
+			Sprite.FlipV = Velocity.Y > 0;
+		}
+		else
+		{
+			Sprite.Play("horizontal");
+			Sprite.FlipH = Velocity.X > 0;
+			Sprite.FlipV = false;
+		}
+		
+		MoveAndSlide();
 	}
 
 	public void SetData(EnemyData data)

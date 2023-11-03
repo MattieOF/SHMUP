@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_hx0vv")
-XPNeededForLevel = Array[int]([5, 10, 20, 40])
+XPNeededForLevel = Array[int]([5, 10, 20, 40, 80, 150])

@@ -26,7 +26,10 @@ public partial class LootTable : Resource
             {
                 weightAccum += element.Weight;
                 if (roll <= weightAccum)
+                {
                     result.Add(new ItemStack(element.Item, Utility.RNG.RandiRange((int)element.CountRange.X, (int)element.CountRange.Y)));
+                    break;
+                }
             }
         }
         

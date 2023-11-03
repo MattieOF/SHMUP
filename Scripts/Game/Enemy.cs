@@ -37,8 +37,8 @@ public partial class Enemy : CharacterBody2D
 		var gemDrops = Data.GemDrop.Roll();
 		var itemDrops = Data.ItemDrop.Roll();
 		var root = (GetNode("/root/Game") as Node2D)!;
-        root.SpawnItems(gemDrops, GlobalPosition, new Vector2(5, 5));
-        root.SpawnItems(itemDrops, GlobalPosition, new Vector2(5, 5));
+        root.SpawnItems(gemDrops, GlobalPosition, new Vector2(50, 50));
+        root.SpawnItems(itemDrops, GlobalPosition, new Vector2(50, 50));
         
 		QueueFree();
 	}

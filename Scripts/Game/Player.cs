@@ -92,6 +92,9 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!Alive)
+			return;
+
 		base._PhysicsProcess(delta);
 		Velocity = _movement * Data.MoveSpeed * 50 * (float)delta;
 		MoveAndSlide();

@@ -96,7 +96,7 @@ public partial class Enemy : CharacterBody2D
 		dmgNumber.AngularVelocity = Utility.RNG.RandfRange(-80, 80);
 		dmgNumber.Color = dmg < 0 ? Colors.Green : Colors.Red;
 		dmgNumber.Text = (-dmg).ToString("F1"); // Abs so bodged healing via negative dmg doesn't show as negative
-		AddChild(dmgNumber);
+		GetNode("/root/Game").AddChild(dmgNumber);
 		dmgNumber.GlobalPosition = GlobalPosition;
 		
 		this.PlaySound2D(Data.HurtSound, GetNode("/root/Game"));

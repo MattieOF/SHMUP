@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Farm Survivors"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Art/Character/Dude/frame_0_delay-0.08s.png"
 
 [autoload]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmupfs64javr3"]
 
+[ext_resource type="Script" path="res://Scripts/UI/GameOver.cs" id="1_3gr1w"]
 [ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="1_gxqec"]
-[ext_resource type="Script" path="res://Scenes/UI/GameOver.cs" id="1_pk2jf"]
 
 [node name="GameOver" type="CanvasLayer"]
-script = ExtResource("1_pk2jf")
+script = ExtResource("1_3gr1w")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

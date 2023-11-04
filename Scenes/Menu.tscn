@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://dco4qlknbn4a8"]
+
+[ext_resource type="Texture2D" uid="uid://cvt1b5pllhfo2" path="res://Art/MenuArt.jpg" id="1_m2s06"]
+[ext_resource type="Script" path="res://Scripts/UI/GameOver.cs" id="1_q1j4a"]
+[ext_resource type="Texture2D" uid="uid://d2uhph7bihdi4" path="res://Art/Character/Dude/frame_0_delay-0.08s.png" id="2_uwhxm"]
+[ext_resource type="Texture2D" uid="uid://12ifmyrfla4v" path="res://Art/Character/Dude/frame_1_delay-0.08s.png" id="3_bh642"]
+[ext_resource type="Texture2D" uid="uid://dbfu60hiq2ei1" path="res://Art/Character/Dude/frame_2_delay-0.08s.png" id="4_bvmuf"]
+[ext_resource type="Texture2D" uid="uid://74ghytq7hqqp" path="res://Art/Character/Dude/frame_3_delay-0.08s.png" id="5_orprm"]
+[ext_resource type="Texture2D" uid="uid://bqd3qk5spphnn" path="res://Art/Character/Dude/frame_4_delay-0.08s.png" id="6_fpkkd"]
+[ext_resource type="Texture2D" uid="uid://bfan664dtmmdt" path="res://Art/Character/Dude/frame_5_delay-0.08s.png" id="7_qefsv"]
+[ext_resource type="Texture2D" uid="uid://dht5fctel473e" path="res://Art/Character/Dude/frame_6_delay-0.08s.png" id="8_gbiuc"]
+[ext_resource type="Texture2D" uid="uid://cype1ghixchk5" path="res://Art/Character/Dude/frame_7_delay-0.08s.png" id="9_xiwr8"]
+[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="10_3ue55"]
+[ext_resource type="FontFile" uid="uid://bokg44dqiybb" path="res://Art/Fonts/Roboto/Roboto-Light.ttf" id="11_iq6qq"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cpmeo"]
+frames = 8
+frame_0/texture = ExtResource("2_uwhxm")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("3_bh642")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("4_bvmuf")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("5_orprm")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("6_fpkkd")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("7_qefsv")
+frame_5/duration = 0.1
+frame_6/texture = ExtResource("8_gbiuc")
+frame_6/duration = 0.1
+frame_7/texture = ExtResource("9_xiwr8")
+frame_7/duration = 0.1
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_q1j4a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m2s06")
+expand_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -381.0
+offset_top = -141.0
+offset_right = 1155.0
+offset_bottom = 1253.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+texture = SubResource("AnimatedTexture_cpmeo")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -706.0
+offset_top = 60.0
+offset_right = -288.0
+offset_bottom = 123.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3ue55")
+theme_override_font_sizes/font_size = 50
+text = "FARM SURVIVORS"
+
+[node name="NewRunButton" type="Button" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -418.0
+offset_top = -22.0
+offset_right = -291.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_3ue55")
+theme_override_font_sizes/font_size = 30
+text = "  New Run  "
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -446.0
+offset_top = 30.0
+offset_right = -291.0
+offset_bottom = 74.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_iq6qq")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="NewRunButton" to="." method="StartNewRun"]
+[connection signal="pressed" from="QuitButton" to="." method="QuitToDesktop"]

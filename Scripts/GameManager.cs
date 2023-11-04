@@ -6,6 +6,7 @@ public partial class GameManager : Node2D
 	[Export] public Vector2 SpawnCountRange = new(1, 3);
 	[Export] public int MaxSpawns = 50;
 	[Export] public EnemyData Enemy;
+	[Export] public TileMap Map;
 
 	private float _spawnCooldown;
 	private Player _player;
@@ -39,9 +40,9 @@ public partial class GameManager : Node2D
 				while (tries > 0)
 				{
 					var pos = viewRect.GetPointAlongPerimeter(Utility.RNG.Randf());
-					pos = NavigationServer2D.MapGetClosestPoint(NavigationServer2D.GetMaps()[0], pos);
-
-					if (!viewRect.HasPoint(pos))
+					var tile = Map.GetCellTileData(0, Map.LocalToMap(Map.ToLocal(pos)));
+					
+					if (tile is not null && tile.GetCustomData("Spawnable").AsBool() && !viewRect.HasPoint(pos))
 					{
 						this.SpawnEnemy(Enemy, pos);
 						break;

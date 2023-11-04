@@ -17,11 +17,12 @@ size = Vector2(114, 278)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ailb"]
 size = Vector2(280, 383)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("Map")]
 script = ExtResource("1_bxp17")
 SpawnCooldown = 1.0
 MaxSpawns = 20
 Enemy = ExtResource("2_wjobr")
+Map = NodePath("TileMap")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1

@@ -10,7 +10,7 @@ public partial class Enemy : CharacterBody2D
 	public float Health;
 
 	private Player _moveTarget, _target;
-	private float _attackCooldown;
+	private float _attackCooldown, _despawnCheck;
 	private PackedScene _damageNumberScene = GD.Load<PackedScene>("res://Scenes/UI/DamageNumber.tscn");
 
 	public override void _Ready()
@@ -60,6 +60,17 @@ public partial class Enemy : CharacterBody2D
 				_attackCooldown -= (float)delta;
 			else
 				Attack();
+		}
+
+		_despawnCheck -= (float)delta;
+		if (_despawnCheck <= 0)
+		{
+			if (_moveTarget?.GlobalPosition.DistanceSquaredTo(GlobalPosition) > 1500 * 1500)
+			{
+				Console.Instance.WriteWarn($"Despawn at {GlobalPosition}");
+				QueueFree();
+			}
+			_despawnCheck = 1;
 		}
 	}
 

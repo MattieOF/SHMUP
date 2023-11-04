@@ -31,8 +31,9 @@ public partial class HUD : CanvasLayer
 			ResourcesContainer.AddChild(ui);
 			_resourceNotifs.Add(itemType, ui);
 		}
+		UpdateHealthBar(1);
 	}
-
+	
 	public void UpdateResourceUI(Player player)
 	{
 		foreach (var itemType in TrackedResources)

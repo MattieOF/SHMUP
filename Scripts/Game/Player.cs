@@ -17,12 +17,12 @@ public partial class Player : CharacterBody2D
 
 	public bool Alive => Health > 0;
 	
+	public PlayerCamera Camera { get; private set; }
 	public int XP { get; private set; }
 	public float MaxHealth = 100;
 	public float Health = 100;
 
 	private AnimatedSprite2D _sprite;
-	private PlayerCamera _camera;
 	private Vector2 _movement, _targetCamOffset;
 	private bool _movingLastFrame;
 	private PackedScene _bloodParticle = GD.Load<PackedScene>("res://Scenes/Particles/Blood.tscn");
@@ -35,14 +35,17 @@ public partial class Player : CharacterBody2D
 		_sprite.Animation = "down";
 		_sprite.Stop();
 
-		_camera = GetNode<PlayerCamera>("Camera");
+		Camera = GetNode<PlayerCamera>("Camera");
 
 		MaxHealth = Data.BaseHealth;
 		Health = MaxHealth;
 
 		PickupArea.AreaEntered += area => (area as Pickup)?.PickUp(this);
 
-		Inventory.OnInventoryUpdated += () => HUD.UpdateResourceUI(this);
+		Inventory.OnInventoryUpdated += () =>
+		{
+			if (Alive) HUD.UpdateResourceUI(this);
+		};
 	}
 
 	public override void _Process(double delta)
@@ -62,7 +65,7 @@ public partial class Player : CharacterBody2D
 		// Update camera look-ahead
 		if (movementLength != 0)
 			_targetCamOffset = _movement * Globals.Instance.LookAheadDistance;
-		_camera.OffsetFromTarget = Utility.MoveToward(_camera.OffsetFromTarget, _targetCamOffset, Globals.Instance.LookAheadSpeed * (float)delta);
+		Camera.OffsetFromTarget = Utility.MoveToward(Camera.OffsetFromTarget, _targetCamOffset, Globals.Instance.LookAheadSpeed * (float)delta);
 		
 		// Select animation
 		if (movementLength == 0)
@@ -83,11 +86,11 @@ public partial class Player : CharacterBody2D
 		}
 
 		if (Input.IsActionJustPressed("gem_test"))
-			(GetNode("/root/Game") as Node2D).SpawnItem(Gems[Utility.RNG.RandiRange(0, Gems.Length - 1)], _camera.GetGlobalMousePosition());
+			(GetNode("/root/Game") as Node2D).SpawnItem(Gems[Utility.RNG.RandiRange(0, Gems.Length - 1)], Camera.GetGlobalMousePosition());
 		if (Input.IsActionPressed("res_test"))
-			(GetNode("/root/Game") as Node2D).SpawnItem(Resources[Utility.RNG.RandiRange(0, Resources.Length - 1)], _camera.GetGlobalMousePosition());
+			(GetNode("/root/Game") as Node2D).SpawnItem(Resources[Utility.RNG.RandiRange(0, Resources.Length - 1)], Camera.GetGlobalMousePosition());
 		if (Input.IsActionJustPressed("enemy_test"))
-			(GetNode("/root/Game") as Node2D).SpawnEnemy(TestEnemy, _camera.GetGlobalMousePosition());
+			(GetNode("/root/Game") as Node2D).SpawnEnemy(TestEnemy, Camera.GetGlobalMousePosition());
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -102,6 +105,9 @@ public partial class Player : CharacterBody2D
 
 	public void AddXP(int xp)
 	{
+		if (!Alive)
+			return;
+		
 		XP += xp;
 		HUD.SetLevel(Data.XPToLevelData.GetLevel(XP));
 	}

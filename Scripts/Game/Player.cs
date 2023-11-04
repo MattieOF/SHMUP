@@ -21,6 +21,7 @@ public partial class Player : CharacterBody2D
 	public int XP { get; private set; }
 	public float MaxHealth = 100;
 	public float Health = 100;
+	public float SpeedMultiplier = 1;
 
 	private AnimatedSprite2D _sprite;
 	private Vector2 _movement, _targetCamOffset;
@@ -99,7 +100,7 @@ public partial class Player : CharacterBody2D
 			return;
 
 		base._PhysicsProcess(delta);
-		Velocity = _movement * Data.MoveSpeed * 50 * (float)delta;
+		Velocity = _movement * Data.MoveSpeed * SpeedMultiplier * 50 * (float)delta;
 		MoveAndSlide();
 	}
 
@@ -108,8 +109,17 @@ public partial class Player : CharacterBody2D
 		if (!Alive)
 			return;
 		
+		var oldLevel = Data.XPToLevelData.GetLevel(XP);
 		XP += xp;
-		HUD.SetLevel(Data.XPToLevelData.GetLevel(XP));
+		var newLevel = Data.XPToLevelData.GetLevel(XP);
+
+		if (Mathf.FloorToInt(oldLevel) < Mathf.FloorToInt(newLevel))
+		{
+			GetNode("/root/Game").AddChild(GD.Load<PackedScene>("res://Scenes/UI/SelectUpgrade.tscn").Instantiate());
+			GetTree().Paused = true;
+		}
+		
+		HUD.SetLevel(newLevel);
 	}
 
 	public void Hurt(float dmg)

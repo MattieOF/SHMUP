@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://wgirx1odxide"]
+
+[ext_resource type="Script" path="res://Scripts/UI/SelectUpgrade.cs" id="1_117f8"]
+[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="2_2fnw7"]
+
+[node name="SelectUpgrade" type="CanvasLayer" node_paths=PackedStringArray("Buttons")]
+process_mode = 3
+script = ExtResource("1_117f8")
+Buttons = [NodePath("HBoxContainer/Upgrade1"), NodePath("HBoxContainer/Upgrade2"), NodePath("HBoxContainer/Upgrade3")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -223.0
+offset_top = 80.0
+offset_right = 223.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_2fnw7")
+theme_override_font_sizes/font_size = 80
+text = "Select an upgrade"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -50.5
+offset_right = 87.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade1" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "     Start a New Run     "
+
+[node name="Upgrade2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Return to Menu"
+
+[node name="Upgrade3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Quit to Desktop"

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Godot;
 
 public static class Utility
@@ -134,4 +135,6 @@ public static class Utility
     {
         vec = vec.Normalized();
     }
+    
+    public static string SplitCamelCase(string input) => string.Join(" ", Regex.Split(input, @"(?<!^)(?=[A-Z](?![A-Z]|$))"));
 }
